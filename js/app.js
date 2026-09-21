@@ -151,3 +151,31 @@ summaryVideoClose.addEventListener('click',()=>summaryVideoDialog.close());summa
   policyClose?.addEventListener('click',()=>policy?.close());
   policy?.addEventListener('click',event=>{if(event.target===policy)policy.close()});
 })();
+
+
+// Selector de personajes de Miseria
+(() => {
+  const root=document.getElementById('miseria-characters');
+  if(!root)return;
+  const tabs=[...root.querySelectorAll('[role="tab"]')];
+  const panels=[...root.querySelectorAll('[role="tabpanel"]')];
+  const activate=tab=>{
+    tabs.forEach(item=>item.setAttribute('aria-selected',String(item===tab)));
+    panels.forEach(panel=>{panel.hidden=panel.id!==tab.getAttribute('aria-controls')});
+  };
+  tabs.forEach((tab,index)=>{
+    tab.addEventListener('click',()=>activate(tab));
+    tab.addEventListener('keydown',event=>{
+      if(!['ArrowRight','ArrowLeft','ArrowDown','ArrowUp','Home','End'].includes(event.key))return;
+      event.preventDefault();
+      let next;
+      if(event.key==='Home')next=tabs[0];
+      else if(event.key==='End')next=tabs[tabs.length-1];
+      else{
+        const step=['ArrowRight','ArrowDown'].includes(event.key)?1:-1;
+        next=tabs[(index+step+tabs.length)%tabs.length];
+      }
+      activate(next);next.focus();
+    });
+  });
+})();

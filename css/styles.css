@@ -376,3 +376,234 @@ main,section,header,footer,.nav-inner,.hero-inner,.promise-inner,.dark-line-inne
   .reader-pages-nav{height:42px}
   .reading-audio{position:relative;bottom:auto}
 }
+
+
+/* ===== Ajustes finales: nueva identidad Miseria ===== */
+/* Primera página: libro limpio sobre el fondo, sin marco/glow/efecto de tarjeta */
+.reader-cover{
+  background:transparent!important;
+  box-shadow:none!important;
+  filter:none!important;
+  perspective:none!important;
+}
+.reader-cover::before{display:none!important;content:none!important}
+.reader-cover img{
+  background:transparent!important;
+  box-shadow:none!important;
+  filter:none!important;
+  object-fit:contain!important;
+}
+.reader-cover:hover{transform:none!important}
+.reader-cover:hover img{box-shadow:none!important;filter:none!important}
+
+/* Reproductor: sustituye el rojo de la identidad anterior por oro/ámbar */
+.audio-world::after{background:linear-gradient(110deg,transparent 55%,rgba(195,146,50,.07))!important}
+.audio-player{border-color:#51422f!important;border-top-color:#c39232!important}
+.audio-tabs{border-color:#4b4031!important}
+.audio-tab{color:#a69982!important}
+.audio-tab.active{
+  background:linear-gradient(135deg,#d8b760,#a97826)!important;
+  color:#120d08!important;
+  box-shadow:inset 0 0 0 1px rgba(255,239,199,.18)!important;
+}
+.audio-play{
+  border-color:#e3c979!important;
+  background:linear-gradient(145deg,#dfbd65,#9a6a1e)!important;
+  color:#130e08!important;
+  box-shadow:0 0 0 10px rgba(195,146,50,.10),0 16px 36px #0008!important;
+}
+.audio-skip{
+  border-color:#68583d!important;
+  background:#14100b!important;
+  color:#e3d4b5!important;
+}
+.audio-skip:hover,.audio-skip:focus-visible{
+  border-color:#d8b760!important;
+  background:#21190e!important;
+  color:#fff7e3!important;
+}
+.audio-line{background:linear-gradient(90deg,#c39232 0 var(--audio-progress),#68583d var(--audio-progress) 100%)!important}
+.audio-line::before{background:#fff9e9!important;border-color:#c39232!important}
+.audio-options{border-top-color:#433828!important;color:#a69982!important}
+.audio-speed select{
+  border-color:#68583d!important;
+  background-color:#14100b!important;
+  color:#eadfc8!important;
+  background-image:linear-gradient(45deg,transparent 50%,#d8b760 50%),linear-gradient(135deg,#d8b760 50%,transparent 50%)!important;
+}
+.audio-speed select:hover,.audio-speed select:focus{border-color:#d8b760!important}
+.audio-mute{color:#e3d4b5!important}
+.audio-volume input[type=range]{background:#68583d!important}
+.audio-volume input[type=range]::-webkit-slider-thumb{background:#d8b760!important;box-shadow:0 0 0 3px rgba(216,183,96,.14)!important}
+.audio-volume input[type=range]::-moz-range-thumb{background:#d8b760!important}
+.audio-volume span,.audio-status,.audio-panel:not(.video-mode) .audio-status{color:#9e917a!important}
+
+/* Selector de personajes, integrado en la estética negro/dorado de la nueva portada */
+#miseria-characters{
+  --mc-gold:#c39232;
+  --mc-gold-light:#e4c67f;
+  --mc-night:#0b0908;
+  --mc-paper:#fffaf0;
+  --mc-muted:rgba(255,250,240,.68);
+  --mc-rule:rgba(228,198,127,.24);
+  position:relative;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 84% 12%,rgba(195,146,50,.18),transparent 30%),
+    linear-gradient(118deg,#0b0908 0%,#161008 56%,#22170c 100%);
+  color:var(--mc-paper);
+}
+#miseria-characters::after{
+  content:"";
+  position:absolute;
+  width:520px;height:520px;border-radius:50%;
+  right:-260px;bottom:-320px;
+  background:rgba(195,146,50,.08);
+  filter:blur(8px);
+  pointer-events:none;
+}
+#miseria-characters *{box-sizing:border-box}
+#miseria-characters .mc-inner{
+  position:relative;z-index:1;
+  width:var(--page);
+  margin:0 auto;
+  padding:clamp(68px,8vw,108px) 0 clamp(72px,8.5vw,116px);
+}
+#miseria-characters .mc-nav{
+  display:grid;
+  grid-template-columns:minmax(240px,.72fr) minmax(0,1.28fr);
+  column-gap:clamp(42px,7vw,112px);
+  align-items:end;
+}
+#miseria-characters h2,#miseria-characters h3{font-family:var(--serif);font-weight:600}
+#miseria-characters h2{
+  margin:0 0 18px;
+  font-size:clamp(48px,7vw,90px);
+  line-height:.9;
+  letter-spacing:-.045em;
+}
+#miseria-characters .mc-intro{
+  max-width:430px;
+  margin:0 0 36px;
+  color:var(--mc-muted);
+  font-family:var(--serif);
+  font-size:18px;
+  line-height:1.5;
+}
+#miseria-characters .mc-tabs{
+  grid-column:1/-1;
+  display:flex;
+  width:100%;
+  border-top:1px solid var(--mc-rule);
+  border-bottom:1px solid var(--mc-rule);
+}
+#miseria-characters .mc-tab{
+  appearance:none;
+  flex:1 1 0;
+  min-width:0;
+  min-height:62px;
+  padding:18px 10px;
+  border:0;
+  border-right:1px solid var(--mc-rule);
+  background:transparent;
+  color:rgba(255,250,240,.52);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font:600 12px/1 var(--sans);
+  letter-spacing:.12em;
+  text-align:center;
+  text-transform:uppercase;
+  cursor:pointer;
+  transition:color .2s ease,background .2s ease,transform .2s ease;
+}
+#miseria-characters .mc-tab:last-child{border-right:0}
+#miseria-characters .mc-tab:hover{color:var(--mc-paper);background:rgba(195,146,50,.07)}
+#miseria-characters .mc-tab[aria-selected="true"]{
+  color:#171009;
+  background:linear-gradient(135deg,#e0bf6d,#b27d26);
+  transform:translateY(-1px);
+}
+#miseria-characters .mc-stage{
+  min-height:410px;
+  display:grid;
+  align-items:center;
+  padding-top:clamp(48px,5vw,66px);
+}
+#miseria-characters .mc-panel{
+  grid-area:1/1;
+  display:grid;
+  grid-template-columns:minmax(240px,.72fr) minmax(0,1.28fr);
+  column-gap:clamp(42px,7vw,112px);
+  align-items:start;
+  animation:mc-reveal .34s ease both;
+}
+#miseria-characters .mc-panel[hidden]{display:none}
+#miseria-characters .mc-role{
+  grid-column:1;grid-row:1;
+  margin:9px 0 18px;
+  color:var(--mc-gold-light);
+  font-size:10px;
+  font-weight:600;
+  letter-spacing:.24em;
+  text-transform:uppercase;
+}
+#miseria-characters h3{
+  grid-column:2;grid-row:1;
+  max-width:650px;
+  margin:0 0 25px;
+  font-size:clamp(37px,5.2vw,68px);
+  line-height:.98;
+  letter-spacing:-.035em;
+}
+#miseria-characters .mc-copy{
+  grid-column:2;grid-row:2;
+  max-width:590px;
+  margin:0;
+  color:rgba(255,250,240,.80);
+  font-size:16px;
+  line-height:1.72;
+}
+#miseria-characters .mc-secret{
+  grid-column:2;grid-row:3;
+  margin:32px 0 0;
+  padding-top:17px;
+  border-top:1px solid var(--mc-rule);
+  color:var(--mc-paper);
+  font:600 18px/1.4 var(--serif);
+}
+#miseria-characters .mc-secret span{
+  margin-right:8px;
+  color:var(--mc-gold-light);
+  font:600 10px var(--sans);
+  letter-spacing:.18em;
+  text-transform:uppercase;
+}
+@keyframes mc-reveal{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:translateY(0)}}
+@media(prefers-reduced-motion:reduce){#miseria-characters .mc-panel{animation:none}#miseria-characters .mc-tab{transition:none}}
+@media(max-width:900px){
+  #miseria-characters .mc-inner{width:var(--page);padding-top:64px;padding-bottom:70px}
+  #miseria-characters .mc-nav{display:block}
+  #miseria-characters h2{margin-bottom:14px}
+  #miseria-characters .mc-intro{margin-bottom:28px}
+  #miseria-characters .mc-tabs{overflow-x:auto;scrollbar-width:none}
+  #miseria-characters .mc-tabs::-webkit-scrollbar{display:none}
+  #miseria-characters .mc-tab{flex:0 0 auto;min-width:max-content;padding-inline:18px}
+  #miseria-characters .mc-panel{grid-template-columns:1fr;gap:0}
+  #miseria-characters .mc-role,#miseria-characters h3,#miseria-characters .mc-copy,#miseria-characters .mc-secret{grid-column:1}
+  #miseria-characters .mc-role{grid-row:auto;margin-bottom:14px}
+  #miseria-characters h3{grid-row:auto;margin-bottom:20px}
+  #miseria-characters .mc-copy{grid-row:auto}
+  #miseria-characters .mc-secret{grid-row:auto}
+  #miseria-characters .mc-stage{min-height:390px;padding-top:40px}
+}
+@media(max-width:600px){
+  #miseria-characters .mc-inner{padding-top:52px;padding-bottom:58px}
+  #miseria-characters h2{font-size:clamp(44px,14vw,62px)}
+  #miseria-characters .mc-intro{font-size:17px}
+  #miseria-characters .mc-tab{min-height:50px;padding:14px 14px;font-size:11px}
+  #miseria-characters .mc-stage{min-height:440px;padding-top:34px}
+  #miseria-characters h3{font-size:clamp(34px,10.5vw,48px);line-height:1.03}
+  #miseria-characters .mc-copy{font-size:15px;line-height:1.68}
+  #miseria-characters .mc-secret{font-size:17px}
+}
