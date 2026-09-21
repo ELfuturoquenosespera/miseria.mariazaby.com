@@ -1,0 +1,7 @@
+Coloca en esta carpeta estos dos archivos MP3, respetando exactamente los nombres:
+- conversacion.mp3
+- debate.mp3
+
+El reproductor de la web los cargará automáticamente desde:
+assets/audio/conversacion.mp3
+assets/audio/debate.mp3

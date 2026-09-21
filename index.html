@@ -117,6 +117,56 @@ Tu navegador no puede reproducir este vídeo.
 </div>
 </div>
 </section>
+<section aria-labelledby="audio-title" class="audio-experience section-pad" id="escuchar">
+<div aria-hidden="true" class="audio-halo"></div>
+<div class="audio-inner">
+<div class="audio-copy reveal">
+<p class="section-kicker">En audio</p>
+<h2 id="audio-title">Dos formas de entrar en <em>Miseria</em>.</h2>
+<p class="audio-lead">Una conversación y un debate sobre las apariencias, el poder y las miserias que se esconden detrás de una vida aparentemente completa.</p>
+<p class="audio-note">Dos piezas inspiradas en la novela, pensadas para escuchar sin destripar la historia.</p>
+</div>
+<div class="miseria-player reveal reveal-delay-1" data-audio-player>
+<div class="audio-tabs" aria-label="Elegir audio" role="tablist">
+<button class="audio-tab is-active" type="button" role="tab" aria-selected="true" data-audio-tab="conversacion">Conversación</button>
+<button class="audio-tab" type="button" role="tab" aria-selected="false" data-audio-tab="debate">Debate</button>
+</div>
+<div class="audio-now">
+<span class="audio-now-label" data-audio-label>Conversación</span>
+<span class="audio-now-duration" data-audio-meta>Audio</span>
+</div>
+<div class="audio-transport" aria-label="Controles de reproducción">
+<button class="audio-skip" type="button" aria-label="Retroceder 15 segundos" title="Retroceder 15 segundos" data-audio-back>−15</button>
+<button class="audio-play" type="button" aria-label="Reproducir" title="Reproducir o pausar" data-audio-play>▶</button>
+<button class="audio-skip" type="button" aria-label="Avanzar 15 segundos" title="Avanzar 15 segundos" data-audio-forward>+15</button>
+</div>
+<div class="audio-progress-row">
+<time data-audio-current>0:00</time>
+<input class="audio-range audio-seek" aria-label="Progreso del audio" type="range" min="0" max="100" step="0.1" value="0" data-audio-seek/>
+<time data-audio-duration>0:00</time>
+</div>
+<div class="audio-secondary">
+<p class="audio-status" aria-live="polite" data-audio-status>Preparado para reproducir</p>
+<label class="audio-speed">
+<span>Velocidad</span>
+<select aria-label="Velocidad de reproducción" data-audio-speed>
+<option value="1" selected>x1</option>
+<option value="1.25">x1,25</option>
+<option value="1.5">x1,5</option>
+<option value="1.75">x1,75</option>
+<option value="2">x2</option>
+</select>
+</label>
+<div class="audio-volume">
+<button type="button" aria-label="Silenciar" title="Silenciar" data-audio-mute>🔊</button>
+<input class="audio-range" aria-label="Volumen" type="range" min="0" max="1" step="0.01" value="1" data-audio-volume/>
+<span data-audio-volume-value>100%</span>
+</div>
+</div>
+<audio preload="metadata" data-audio-element src="assets/audio/conversacion.mp3"></audio>
+</div>
+</div>
+</section>
 <section aria-label="Atmósfera de la novela" class="visual-break">
 <div aria-label="Detalle de las cortinas rojas de la portada" class="visual-panel panel-curtain" role="img"></div>
 <div aria-label="Detalle del despacho oscuro que aparece tras las cortinas" class="visual-panel panel-office" role="img"></div>
