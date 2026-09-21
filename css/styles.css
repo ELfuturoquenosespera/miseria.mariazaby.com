@@ -177,3 +177,21 @@ main,section,header,footer,.nav-inner,.hero-inner,.promise-inner,.dark-line-inne
   .details{padding:42px 0}
   .final{padding-top:54px;padding-bottom:54px}
 }
+
+/* Retrato de la autora: acompaña el scroll solo dentro de su sección */
+@media(min-width:901px){
+  .author > div:last-child{
+    position:relative;
+    align-self:stretch;
+  }
+  .author-portrait{
+    position:sticky;
+    top:104px;
+  }
+}
+@media(max-width:900px){
+  .author-portrait{
+    position:relative;
+    top:auto;
+  }
+}
