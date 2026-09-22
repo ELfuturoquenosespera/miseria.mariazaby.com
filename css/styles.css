@@ -607,3 +607,65 @@ main,section,header,footer,.nav-inner,.hero-inner,.promise-inner,.dark-line-inne
   #miseria-characters .mc-copy{font-size:15px;line-height:1.68}
   #miseria-characters .mc-secret{font-size:17px}
 }
+
+/* Ajuste quirúrgico para la franja horizontal/intermedia: evita imágenes sobredimensionadas y exceso de aire. */
+@media (min-width:601px) and (max-width:900px) and (max-height:700px){
+  .hero{min-height:auto}
+  .hero-inner{padding:88px 0 48px;gap:24px}
+  .hero h1{margin-top:18px;margin-bottom:18px}
+  .signals{margin-top:22px}
+  .actions{margin-top:24px}
+  .hero-visual{width:min(44vw,58vh,320px);margin:0 auto}
+
+  .promise,.dark-line,.story,.cinema,.first-page,.trailer,.audio-world,.character,.press,.author{
+    padding-top:52px;
+    padding-bottom:52px;
+  }
+  .promise-inner,.dark-line-inner,.story-grid,.first-page-inner,.audio-inner,.character-inner,.press-head,.author,.details-inner{
+    gap:24px;
+  }
+  .story-grid{margin-top:28px}
+  .promise-copy .lead{margin-top:20px}
+  .quote{margin-top:26px}
+  .themes{margin-top:24px}
+
+  .reader-cover{width:min(42vw,62vh,300px);margin:0 auto}
+  .trailer-inner{padding:34px;gap:28px}
+  .video-shell{width:min(40vw,66vh,300px);justify-self:center}
+  .audio-player{padding:24px}
+
+  #miseria-characters .mc-inner{padding-top:52px;padding-bottom:56px}
+  #miseria-characters .mc-intro{margin-bottom:22px}
+  #miseria-characters .mc-stage{min-height:0;padding-top:30px}
+
+  .press-head{margin-bottom:28px}
+  .press-card{min-height:230px}
+  .author-portrait{width:min(42vw,70vh,320px);margin:0 auto}
+  .author-books{margin-top:28px}
+  .details{padding:48px 0}
+  .final{padding-top:56px;padding-bottom:56px}
+}
+
+/* Móviles grandes en horizontal y ventanas bajas ligeramente más anchas que el breakpoint tablet. */
+@media (min-width:901px) and (max-width:1100px) and (max-height:600px) and (orientation:landscape){
+  .hero{min-height:auto}
+  .hero-inner{padding:92px 0 46px;gap:30px}
+  .hero-visual{width:min(34vw,62vh,300px)}
+
+  .promise,.dark-line,.story,.cinema,.first-page,.trailer,.audio-world,.character,.press,.author{
+    padding-top:54px;
+    padding-bottom:54px;
+  }
+  .promise-inner,.dark-line-inner,.story-grid,.first-page-inner,.audio-inner,.character-inner,.press-head,.author,.details-inner{
+    gap:32px;
+  }
+  .story-grid{margin-top:30px}
+  .reader-cover{width:min(30vw,64vh,300px)}
+  .trailer-inner{padding:36px;gap:34px}
+  .video-shell{width:min(29vw,68vh,300px)}
+  .author-portrait{width:min(31vw,72vh,320px);justify-self:center}
+  #miseria-characters .mc-inner{padding-top:56px;padding-bottom:60px}
+  #miseria-characters .mc-stage{min-height:330px;padding-top:34px}
+  .details{padding:50px 0}
+  .final{padding-top:58px;padding-bottom:58px}
+}
