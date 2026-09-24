@@ -790,3 +790,58 @@ main,section,header,footer,.nav-inner,.hero-inner,.promise-inner,.dark-line-inne
     object-position:center top;
   }
 }
+
+
+/* Cita de Julia Navarro en el hero. El resto del hero conserva su contenido y estructura. */
+.hero-quote{
+  max-width:560px;
+  margin:22px 0 0;
+  padding:17px 0 0;
+  border-top:1px solid rgba(227,191,121,.34);
+  color:#f5ead6;
+}
+.hero-quote span{
+  display:block;
+  font:600 clamp(19px,1.7vw,25px)/1.3 var(--serif);
+  letter-spacing:-.015em;
+}
+.hero-quote cite{
+  display:block;
+  margin-top:9px;
+  color:#e3bf79;
+  font:800 13px/1.2 var(--sans);
+  font-style:normal;
+  letter-spacing:.17em;
+  text-transform:uppercase;
+}
+
+/* La nueva altura del hero permite dar algo más de presencia a la portada. */
+@media (min-width:1321px){
+  .hero-visual{width:min(100%,520px)}
+  .hero-cover{max-height:calc(100svh - 88px)}
+}
+@media (min-width:1101px) and (max-width:1320px){
+  .hero-visual{width:clamp(260px,28vw,385px)}
+  .hero-cover{max-height:min(62svh,520px)}
+}
+@media (min-width:901px) and (max-width:1100px){
+  .hero-visual{width:clamp(210px,26vw,310px)}
+  .hero-cover{max-height:min(50svh,380px)}
+}
+@media (min-width:701px) and (max-width:900px){
+  .hero-visual{width:clamp(180px,24vw,250px)}
+  .hero-cover{max-height:min(38svh,270px)}
+}
+@media (max-width:700px){
+  .hero-quote{max-width:100%;margin-top:18px;padding-top:14px}
+  .hero-quote span{font-size:19px;line-height:1.32}
+  .hero-quote cite{font-size:12px;margin-top:8px}
+}
+@media (min-width:541px) and (max-width:700px){
+  .hero-visual{width:min(55vw,255px)}
+  .hero-cover{max-height:min(34svh,245px)}
+}
+@media (max-width:540px){
+  .hero-visual{width:min(68vw,280px)}
+  .hero-cover{max-height:min(39svh,320px)}
+}
