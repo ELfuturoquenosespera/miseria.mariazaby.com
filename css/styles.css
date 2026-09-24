@@ -813,6 +813,7 @@ main,section,header,footer,.nav-inner,.hero-inner,.promise-inner,.dark-line-inne
   font-style:normal;
   letter-spacing:.17em;
   text-transform:uppercase;
+  text-align:center;
 }
 
 /* La nueva altura del hero permite dar algo más de presencia a la portada. */
