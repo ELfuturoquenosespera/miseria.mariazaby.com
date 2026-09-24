@@ -846,3 +846,131 @@ main,section,header,footer,.nav-inner,.hero-inner,.promise-inner,.dark-line-inne
   .hero-visual{width:min(68vw,280px)}
   .hero-cover{max-height:min(39svh,320px)}
 }
+
+
+/* Ajustes finales solicitados: autor centrado respecto a la cita y portada con mejor escala responsiva. */
+.hero-quote-content{
+  display:inline-grid;
+  justify-items:center;
+  max-width:100%;
+}
+.hero-quote-content span{
+  width:100%;
+}
+.hero-quote-content cite{
+  width:100%;
+  text-align:center;
+}
+
+/* La portada conserva su proporción, pero aprovecha mejor el espacio disponible en ventanas intermedias. */
+@media (min-width:1101px) and (max-width:1320px){
+  .hero-visual{width:clamp(300px,30vw,420px)}
+  .hero-cover{max-height:min(68svh,590px)}
+}
+@media (min-width:901px) and (max-width:1100px){
+  .hero-visual{width:clamp(250px,30vw,340px)}
+  .hero-cover{max-height:min(63svh,460px)}
+}
+@media (min-width:701px) and (max-width:900px){
+  .hero-visual{width:clamp(220px,29vw,290px)}
+  .hero-cover{max-height:min(52svh,360px)}
+}
+@media (min-width:541px) and (max-width:700px){
+  .hero-visual{width:min(60vw,285px)}
+  .hero-cover{max-height:min(40svh,300px)}
+}
+@media (max-width:540px){
+  .hero-visual{width:min(74vw,310px)}
+  .hero-cover{max-height:min(45svh,350px)}
+}
+
+
+/* ===== Ajustes solicitados 24/09/2026: cita, personajes y cierre ===== */
+/* La cita y la firma quedan centradas dentro del ancho real de su contenedor. */
+.hero-quote{
+  text-align:center;
+}
+.hero-quote-content{
+  display:block;
+  width:100%;
+  max-width:100%;
+  text-align:center;
+}
+.hero-quote-content span,
+.hero-quote-content cite{
+  display:block;
+  width:100%;
+  text-align:center;
+}
+.hero-quote-content cite{
+  font-size:15px;
+  letter-spacing:.17em;
+}
+
+/* Personajes: fondo claro para separar visualmente esta sección de las adyacentes. */
+#miseria-characters{
+  --mc-paper:#171009;
+  --mc-muted:rgba(23,16,9,.66);
+  --mc-rule:rgba(195,146,50,.28);
+  background:#fff;
+  color:#171009;
+}
+#miseria-characters::after{
+  background:rgba(195,146,50,.07);
+}
+#miseria-characters h2,
+#miseria-characters h3{
+  color:#171009;
+}
+#miseria-characters .mc-intro{
+  color:rgba(23,16,9,.66);
+}
+#miseria-characters .mc-tab{
+  color:rgba(23,16,9,.60);
+}
+#miseria-characters .mc-tab:hover{
+  color:#171009;
+  background:rgba(195,146,50,.08);
+}
+#miseria-characters .mc-tab[aria-selected="true"]{
+  color:#171009;
+  background:linear-gradient(135deg,#e0bf6d,#b27d26);
+}
+#miseria-characters .mc-role,
+#miseria-characters .mc-secret span{
+  color:#a8751f;
+}
+#miseria-characters .mc-copy{
+  color:rgba(23,16,9,.78);
+}
+#miseria-characters .mc-secret{
+  color:#171009;
+}
+
+/* Cierre: titular más contenido y portada 3D antes del botón de compra. */
+.final h2{
+  max-width:760px;
+  font-size:clamp(38px,5.2vw,68px);
+  line-height:1;
+}
+.final-book{
+  width:clamp(155px,13vw,190px);
+  margin:26px auto 2px;
+  transform:rotate(-4deg);
+  transform-origin:center center;
+  filter:drop-shadow(0 18px 22px rgba(0,0,0,.38));
+}
+.final-book img{
+  display:block;
+  width:100%;
+  height:auto;
+}
+.final .buy{
+  margin-top:20px;
+}
+
+@media(max-width:700px){
+  .hero-quote-content cite{font-size:13px}
+  .final h2{font-size:clamp(36px,10vw,50px)}
+  .final-book{width:clamp(150px,42vw,180px);margin-top:22px}
+}
