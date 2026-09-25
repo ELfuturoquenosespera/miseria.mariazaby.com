@@ -17,21 +17,32 @@ const reader=document.getElementById('reader-dialog'),
   readerPrevBottom=document.getElementById('reader-prev-bottom'),
   readerNextBottom=document.getElementById('reader-next-bottom'),
   readerViewport=document.getElementById('reader-page-viewport'),
-  readerOpeningCover=document.getElementById('reader-opening-cover');
+  readerOpeningCover=document.getElementById('reader-opening-cover'),
+  readerEndCard=document.getElementById('reader-end-card');
 
 const readerPages=Array.from({length:9},(_,i)=>`assets/primeras-paginas/pagina-${String(i+1).padStart(2,'0')}.png`);
+const readerTotalSteps=readerPages.length+1;
 readerPages.forEach(src=>{const img=new Image();img.src=src});
 let currentReaderPage=0,readerAnimating=false,touchStartX=null;
 
 const formatTime=value=>`${Math.floor(value/60)}:${String(Math.floor(value%60)).padStart(2,'0')}`;
 const updateReaderUI=()=>{
-  readerPageImage.src=readerPages[currentReaderPage];
-  readerPageImage.alt=`Página ${currentReaderPage+1} de las primeras páginas de Miseria`;
-  readerPageCount.textContent=`${currentReaderPage+1} / ${readerPages.length}`;
-  const atStart=currentReaderPage===0,atEnd=currentReaderPage===readerPages.length-1;
+  const onFinalCard=currentReaderPage===readerPages.length;
+  if(onFinalCard){
+    readerPageImage.hidden=true;
+    readerEndCard.hidden=false;
+    readerPageCount.textContent=`Final / ${readerTotalSteps}`;
+  }else{
+    readerPageImage.hidden=false;
+    readerEndCard.hidden=true;
+    readerPageImage.src=readerPages[currentReaderPage];
+    readerPageImage.alt=`Página ${currentReaderPage+1} de las primeras páginas de Miseria`;
+    readerPageCount.textContent=`${currentReaderPage+1} / ${readerTotalSteps}`;
+  }
+  const atStart=currentReaderPage===0,atEnd=currentReaderPage===readerTotalSteps-1;
   [readerPrev,readerPrevBottom].forEach(button=>button.disabled=atStart);
   [readerNext,readerNextBottom].forEach(button=>button.disabled=atEnd);
-  const isNarrativeFirstPage=currentReaderPage===7;
+  const isNarrativeFirstPage=!onFinalCard&&currentReaderPage===7;
   readingAudioBar.hidden=!isNarrativeFirstPage;
   if(!isNarrativeFirstPage&&!readingAudio.paused){readingAudio.pause();readingPlay.textContent='Oír lectura'}
 };
@@ -50,7 +61,7 @@ const openReader=(playAudio=false,startPage=0)=>{
 const changeReaderPage=direction=>{
   if(readerAnimating)return;
   const target=currentReaderPage+direction;
-  if(target<0||target>=readerPages.length)return;
+  if(target<0||target>=readerTotalSteps)return;
   readerAnimating=true;
   readerPageSheet.classList.remove('turn-forward','turn-back','arrive-forward','arrive-back');
   readerPageSheet.classList.add(direction>0?'turn-forward':'turn-back');
@@ -230,9 +241,7 @@ summaryVideoClose.addEventListener('click',()=>summaryVideoDialog.close());summa
 })();
 
 
-// =========================
-// Hero: imagen -> vídeo en hover + reproductor ampliado al hacer clic
-// =========================
+// Hero: vídeo en hover + modal al hacer clic. Bloque aislado.
 (function initHeroVideoExperience(){
   const media=document.getElementById('hero-media');
   const hoverVideo=document.getElementById('hero-hover-video');
@@ -242,47 +251,36 @@ summaryVideoClose.addEventListener('click',()=>summaryVideoDialog.close());summa
   if(!media||!hoverVideo||!dialog||!player)return;
 
   const canHover=window.matchMedia('(hover: hover) and (pointer: fine)');
-
-  const startHover=()=>{
-    if(!canHover.matches || dialog.open)return;
+  function startHover(){
+    if(!canHover.matches||dialog.open)return;
     media.classList.add('is-playing');
-    const p=hoverVideo.play();
-    if(p && typeof p.catch==='function')p.catch(()=>{});
-  };
-
-  const stopHover=()=>{
+    hoverVideo.play().catch(function(){});
+  }
+  function stopHover(){
     media.classList.remove('is-playing');
     hoverVideo.pause();
     try{hoverVideo.currentTime=0}catch(e){}
-  };
-
-  const openDialog=()=>{
+  }
+  function openDialog(){
     stopHover();
-    dialog.showModal();
-    const p=player.play();
-    if(p && typeof p.catch==='function')p.catch(()=>{});
-  };
-
-  const closeDialog=()=>{
+    if(typeof dialog.showModal==='function')dialog.showModal();
+    player.play().catch(function(){});
+  }
+  function closeDialog(){
     player.pause();
     try{player.currentTime=0}catch(e){}
-    dialog.close();
-  };
-
+    if(dialog.open)dialog.close();
+  }
   media.addEventListener('mouseenter',startHover);
   media.addEventListener('mouseleave',stopHover);
   media.addEventListener('click',openDialog);
-  media.addEventListener('keydown',event=>{
+  media.addEventListener('keydown',function(event){
     if(event.key==='Enter'||event.key===' '){event.preventDefault();openDialog()}
   });
-
-  close?.addEventListener('click',closeDialog);
-  dialog.addEventListener('click',event=>{if(event.target===dialog)closeDialog()});
-  dialog.addEventListener('close',()=>{
+  if(close)close.addEventListener('click',closeDialog);
+  dialog.addEventListener('click',function(event){if(event.target===dialog)closeDialog()});
+  dialog.addEventListener('close',function(){
     player.pause();
     try{player.currentTime=0}catch(e){}
-  });
-  document.addEventListener('keydown',event=>{
-    if(event.key==='Escape'&&dialog.open)closeDialog();
   });
 })();
