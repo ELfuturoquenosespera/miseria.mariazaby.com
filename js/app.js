@@ -179,3 +179,52 @@ summaryVideoClose.addEventListener('click',()=>summaryVideoDialog.close());summa
     });
   });
 })();
+
+
+// Acceso mediante código a la nota de prensa
+(()=>{
+  const dialog=document.getElementById('press-access-dialog');
+  const triggers=[...document.querySelectorAll('.press-access-trigger')];
+  const close=document.getElementById('press-access-close');
+  const form=document.getElementById('press-access-form');
+  const input=document.getElementById('press-access-code');
+  const error=document.getElementById('press-access-error');
+  const lock=document.getElementById('press-access-lock');
+  const note=document.getElementById('press-note-full');
+  if(!dialog||!triggers.length||!form||!input||!lock||!note)return;
+
+  // Código provisional. Puede sustituirse por cualquier texto o número.
+  const ACCESS_CODE='2026';
+  const SESSION_KEY='miseria_press_access';
+
+  const showNote=()=>{
+    lock.hidden=true;
+    note.hidden=false;
+    error.textContent='';
+    sessionStorage.setItem(SESSION_KEY,'granted');
+  };
+  const showLock=()=>{
+    lock.hidden=false;
+    note.hidden=true;
+    input.value='';
+    error.textContent='';
+  };
+  const openDialog=()=>{
+    const nav=document.getElementById('navigation');
+    const menu=document.querySelector('.menu');
+    nav?.classList.remove('open');
+    menu?.setAttribute('aria-expanded','false');
+    if(sessionStorage.getItem(SESSION_KEY)==='granted')showNote(); else showLock();
+    dialog.showModal();
+    if(!lock.hidden)setTimeout(()=>input.focus(),40);
+  };
+
+  triggers.forEach(trigger=>trigger.addEventListener('click',openDialog));
+  close?.addEventListener('click',()=>dialog.close());
+  dialog.addEventListener('click',event=>{if(event.target===dialog)dialog.close()});
+  form.addEventListener('submit',event=>{
+    event.preventDefault();
+    if(input.value.trim()===ACCESS_CODE){showNote();note.focus?.()}
+    else{error.textContent='Código incorrecto. Comprueba el código e inténtalo de nuevo.';input.select()}
+  });
+})();

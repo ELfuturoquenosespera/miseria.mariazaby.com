@@ -107,7 +107,7 @@
 </head>
 <body>
   <a class="skip" href="#contenido">Saltar al contenido</a>
-  <header class="nav"><div class="nav-inner"><a class="wordmark" href="#inicio" aria-label="Miseria, inicio">MISERIA</a><button class="menu" type="button" aria-expanded="false" aria-controls="navigation">Menú</button><nav class="nav-links" id="navigation" aria-label="Navegación principal"><a href="#historia">La historia</a><a href="#primera-pagina">Primera página</a><a href="#video">Vídeo</a><a href="#audio">En audio</a><a href="#miseria-characters">Personajes</a><a href="#prensa">Prensa</a><a href="#autora">María Zabay</a><button class="buy purchase-trigger" type="button">Comprar la novela</button></nav></div></header>
+  <header class="nav"><div class="nav-inner"><a class="wordmark" href="#inicio" aria-label="Miseria, inicio">MISERIA</a><button class="menu" type="button" aria-expanded="false" aria-controls="navigation">Menú</button><nav class="nav-links" id="navigation" aria-label="Navegación principal"><a href="#historia">La historia</a><a href="#primera-pagina">Primera página</a><a href="#video">Vídeo</a><a href="#audio">En audio</a><a href="#miseria-characters">Personajes</a><a href="#prensa">Prensa</a><a href="#autora">María Zabay</a><button class="press-access-trigger" type="button">Nota de prensa</button><button class="buy purchase-trigger" type="button">Comprar la novela</button></nav></div></header>
   <main id="contenido">
     <section class="hero" id="inicio"><div class="hero-inner"><div class="hero-copy"><div class="eyebrow">María Zabay · Nueva novela</div><h1>Una novela sobre el poder <em>y quienes viven de él</em></h1><p class="hero-sub">Una muerte inesperada. Un imperio heredado. Y una verdad capaz de destruirlo todo.</p><blockquote class="hero-quote"><div class="hero-quote-content"><span>«Una novela impactante, sorprenderá»,</span><cite>JULIA NAVARRO</cite></div></blockquote><div class="signals"><span>Poder</span><span>Herencia</span><span>Deseo</span><span>Conciencia</span></div><div class="actions"><a class="ghost" href="#historia">Entrar en la historia</a><a class="ghost" href="#primera-pagina">Ver el libro</a><button class="buy purchase-trigger" type="button">Comprar la novela</button></div></div><figure class="hero-visual"><img class="hero-cover" src="assets/miseria-hero.png" alt="Portada de MISERIA, novela de María Zabay" width="1365" height="2048" fetchpriority="high" decoding="async"></figure></div><a class="scroll" href="#promesa">Descender</a></section>
     <section class="promise" id="promesa"><div class="promise-inner"><div class="section-no"></div><div class="promise-copy"><h2>La grandeza también puede esconder <em>miseria</em></h2><p class="lead">Un narrador que se incrimina a sí mismo mientras incrimina a los demás.</p><p class="support">Alonso no denuncia la corrupción desde fuera: pertenece al mundo que juzga. La tensión nace de esa contradicción, de la inteligencia con la que ve la podredumbre y de todo lo que aún está dispuesto a proteger.</p></div></div></section>
@@ -234,6 +234,34 @@
     <section class="details"><div class="details-inner"><h2>Ficha del libro</h2><dl><div><dt>Título</dt><dd>Miseria</dd></div><div><dt>Autora</dt><dd>María Zabay</dd></div><div><dt>Editorial</dt><dd>Conrad Berenice</dd></div><div><dt>Idioma</dt><dd>Castellano</dd></div><div><dt>Páginas</dt><dd>268</dd></div><div><dt>ISBN</dt><dd>979-13-87811-17-4</dd></div></dl></div></section>
     <section class="final"><h2>Todo tiene un precio</h2><p>Descubre la nueva novela de María Zabay.</p><figure class="final-book"><img src="assets/miseria-hero.png" alt="Portada 3D de Miseria, de María Zabay" loading="lazy"></figure><button class="buy purchase-trigger" type="button">Comprar la novela</button></section>
   </main>
+  <dialog class="press-access-dialog" id="press-access-dialog" aria-labelledby="press-access-title">
+    <div class="press-access-shell">
+      <button class="press-access-close" type="button" id="press-access-close" aria-label="Cerrar">×</button>
+      <div class="press-access-lock" id="press-access-lock">
+        <div class="press-access-kicker">Acceso de prensa</div>
+        <h2 id="press-access-title">Nota de prensa</h2>
+        <p>Introduce el código de acceso para consultar la nota de prensa completa.</p>
+        <form class="press-access-form" id="press-access-form" autocomplete="off">
+          <label for="press-access-code">Código de acceso</label>
+          <div class="press-access-row">
+            <input id="press-access-code" name="press-access-code" type="password" inputmode="numeric" autocomplete="one-time-code" maxlength="24" placeholder="Introduce el código" required>
+            <button type="submit">Acceder</button>
+          </div>
+          <p class="press-access-error" id="press-access-error" role="alert" aria-live="polite"></p>
+        </form>
+      </div>
+      <article class="press-note-full" id="press-note-full" hidden>
+        <div class="press-access-kicker">Nota de prensa</div>
+        <h2><em>Miseria</em>, la nueva novela de María Zabay</h2>
+        <p class="press-note-lead">Documento reservado para prensa y colaboradores acreditados.</p>
+        <div class="press-note-body">
+          <!-- Sustituir este bloque por el texto definitivo de la nota de prensa. -->
+          <p><strong>Contenido preparado para incorporar la nota de prensa completa.</strong></p>
+          <p>El acceso mediante código ya está activo. Cuando se disponga del texto definitivo, puede sustituirse este bloque sin modificar el funcionamiento del acceso.</p>
+        </div>
+      </article>
+    </div>
+  </dialog>
   <dialog class="reader-dialog" id="reader-dialog" aria-label="Primeras páginas de Miseria"><button class="reader-close" type="button" id="close-reader" aria-label="Cerrar el libro">×</button><div class="open-book" id="open-book"><div class="book-inside" aria-hidden="true"><div><b>MISERIA</b><span>María Zabay</span></div></div><div class="reader-opening-cover" id="reader-opening-cover" aria-hidden="true"><img src="assets/miseria-hero.jpeg" alt=""></div><div class="book-page"><div class="reader-page-viewport" id="reader-page-viewport"><button class="reader-page-arrow reader-page-prev" type="button" id="reader-page-prev" aria-label="Página anterior">‹</button><div class="reader-page-sheet" id="reader-page-sheet"><img id="reader-page-image" src="assets/primeras-paginas/pagina-01.png" alt="Página 1 de las primeras páginas de Miseria"></div><button class="reader-page-arrow reader-page-next" type="button" id="reader-page-next" aria-label="Página siguiente">›</button></div><div class="reader-pages-nav"><button type="button" id="reader-prev-bottom" aria-label="Página anterior">←</button><span id="reader-page-count" aria-live="polite">1 / 9</span><button type="button" id="reader-next-bottom" aria-label="Página siguiente">→</button></div><div class="reading-audio" id="reading-audio-bar"><button class="reading-play" type="button" id="reading-play" aria-label="Oír la lectura de la primera página">Oír lectura</button><div class="reading-progress" id="reading-progress" role="slider" aria-label="Progreso de la lectura" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" tabindex="0"><span id="reading-progress-fill"></span></div><span class="reading-time" id="reading-time">0:00</span><audio id="reading-audio" preload="metadata" src="assets/audio/lecturaprimerapagina.mp3"></audio></div></div></div></dialog>
   <dialog class="summary-video-dialog" id="summary-video-dialog" aria-label="Vídeo: ¿De qué va Miseria?"><button class="summary-video-close" type="button" id="summary-video-close" aria-label="Cerrar vídeo">×</button><div class="summary-video-frame"><video id="summary-video" controls playsinline preload="metadata"><source src="assets/video-resumen.mp4" type="video/mp4">Tu navegador no puede reproducir este vídeo.</video></div></dialog>
   <dialog class="purchase-dialog" id="purchase-dialog" aria-label="Comprar Miseria"><div class="purchase-dialog-inner"><button class="purchase-close" type="button" id="purchase-close" aria-label="Cerrar">×</button><div class="section-no">Comprar la novela</div><h2>Elige dónde comprar <em>Miseria</em>.</h2><p>Las opciones quedarán activadas en cuanto estén disponibles los enlaces oficiales.</p><div class="shop-options"><button class="shop-option" type="button" disabled>Amazon · Próximamente</button><button class="shop-option" type="button" disabled>Casa del Libro · Próximamente</button></div><p class="shop-note">No te enviaremos a ninguna página provisional o incorrecta.</p></div></dialog>
