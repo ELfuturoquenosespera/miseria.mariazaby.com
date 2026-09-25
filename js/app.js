@@ -228,3 +228,61 @@ summaryVideoClose.addEventListener('click',()=>summaryVideoDialog.close());summa
     else{error.textContent='Código incorrecto. Comprueba el código e inténtalo de nuevo.';input.select()}
   });
 })();
+
+
+// =========================
+// Hero: imagen -> vídeo en hover + reproductor ampliado al hacer clic
+// =========================
+(function initHeroVideoExperience(){
+  const media=document.getElementById('hero-media');
+  const hoverVideo=document.getElementById('hero-hover-video');
+  const dialog=document.getElementById('hero-video-dialog');
+  const player=document.getElementById('hero-video-player');
+  const close=document.getElementById('hero-video-close');
+  if(!media||!hoverVideo||!dialog||!player)return;
+
+  const canHover=window.matchMedia('(hover: hover) and (pointer: fine)');
+
+  const startHover=()=>{
+    if(!canHover.matches || dialog.open)return;
+    media.classList.add('is-playing');
+    const p=hoverVideo.play();
+    if(p && typeof p.catch==='function')p.catch(()=>{});
+  };
+
+  const stopHover=()=>{
+    media.classList.remove('is-playing');
+    hoverVideo.pause();
+    try{hoverVideo.currentTime=0}catch(e){}
+  };
+
+  const openDialog=()=>{
+    stopHover();
+    dialog.showModal();
+    const p=player.play();
+    if(p && typeof p.catch==='function')p.catch(()=>{});
+  };
+
+  const closeDialog=()=>{
+    player.pause();
+    try{player.currentTime=0}catch(e){}
+    dialog.close();
+  };
+
+  media.addEventListener('mouseenter',startHover);
+  media.addEventListener('mouseleave',stopHover);
+  media.addEventListener('click',openDialog);
+  media.addEventListener('keydown',event=>{
+    if(event.key==='Enter'||event.key===' '){event.preventDefault();openDialog()}
+  });
+
+  close?.addEventListener('click',closeDialog);
+  dialog.addEventListener('click',event=>{if(event.target===dialog)closeDialog()});
+  dialog.addEventListener('close',()=>{
+    player.pause();
+    try{player.currentTime=0}catch(e){}
+  });
+  document.addEventListener('keydown',event=>{
+    if(event.key==='Escape'&&dialog.open)closeDialog();
+  });
+})();
