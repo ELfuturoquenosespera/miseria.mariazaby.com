@@ -1032,3 +1032,90 @@ main,section,header,footer,.nav-inner,.hero-inner,.promise-inner,.dark-line-inne
     font-size:12px;
   }
 }
+
+
+/* Atmosfera de Miseria — dos textos editoriales */
+.atmosphere-copy{
+  background:var(--paper);
+  padding:clamp(80px,9vw,120px) 0;
+}
+.atmosphere-copy .atmosphere-grid{
+  width:var(--page);
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:clamp(22px,3vw,38px);
+  padding:0;
+  background:transparent;
+  color:var(--ink);
+  border:0;
+  box-shadow:none;
+  isolation:auto;
+}
+.atmosphere-copy .atmosphere-grid::before{display:none}
+.atmosphere-card{
+  position:relative;
+  min-height:100%;
+  padding:clamp(34px,4.3vw,54px);
+  background:linear-gradient(145deg,#fff 0%,#f7f1e8 100%);
+  border:1px solid #d9cbbb;
+  border-top:3px solid #b9892e;
+  box-shadow:0 16px 38px rgba(43,17,20,.08);
+  transition:transform .28s ease,box-shadow .28s ease,border-color .28s ease,background .28s ease;
+}
+.atmosphere-card::after{
+  content:"";
+  position:absolute;
+  inset:14px;
+  border:1px solid rgba(185,137,46,.13);
+  pointer-events:none;
+  transition:border-color .28s ease;
+}
+.atmosphere-card p{
+  position:relative;
+  z-index:1;
+  margin:0;
+  font:500 clamp(20px,1.65vw,26px)/1.62 var(--serif);
+  letter-spacing:-.012em;
+  color:#2b2524;
+}
+.atmosphere-card em{font-style:italic}
+@media(hover:hover){
+  .atmosphere-card:hover{
+    transform:translateY(-5px);
+    border-color:#b9892e;
+    background:linear-gradient(145deg,#fff 0%,#f4eadb 100%);
+    box-shadow:0 24px 52px rgba(43,17,20,.14);
+  }
+  .atmosphere-card:hover::after{border-color:rgba(185,137,46,.28)}
+}
+@media(max-width:900px){
+  .atmosphere-copy .atmosphere-grid{grid-template-columns:1fr;gap:20px}
+  .atmosphere-card{padding:32px 28px}
+}
+@media(max-width:540px){
+  .atmosphere-copy{padding:70px 0}
+  .atmosphere-card{padding:28px 22px}
+  .atmosphere-card p{font-size:19px;line-height:1.58}
+}
+
+
+/* Dossier de prensa: vista previa y descarga */
+.press-access-dialog{width:min(1080px,calc(100% - 32px))}
+.press-note-body{padding-top:20px}
+.press-dossier-actions{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:22px}
+.press-dossier-download,.press-dossier-open{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 18px;text-decoration:none;font:700 12px var(--sans);letter-spacing:.055em;transition:transform .18s ease,background .18s ease,border-color .18s ease,color .18s ease}
+.press-dossier-download{background:var(--red);border:1px solid var(--red);color:#150d0b}
+.press-dossier-download:hover{background:var(--red-dark);border-color:var(--red-dark);color:#fff;transform:translateY(-1px)}
+.press-dossier-open{border:1px solid #bcae9f;color:#514744;background:#fff8}
+.press-dossier-open:hover{border-color:#9c6d15;color:#7b5310;transform:translateY(-1px)}
+.press-dossier-preview{height:min(62vh,720px);min-height:460px;border:1px solid #cfc1b5;background:#d9d2cc;overflow:hidden}
+.press-dossier-preview object{display:block;width:100%;height:100%;border:0;background:#fff}
+.press-dossier-fallback{height:100%;display:grid;place-content:center;gap:14px;padding:30px;text-align:center;background:#f5f0ea;color:#5c514e}
+.press-dossier-fallback a{display:inline-flex;justify-content:center;align-items:center;min-height:46px;padding:0 18px;background:var(--red);color:#150d0b;text-decoration:none;font-weight:700}
+@media(max-width:700px){
+  .press-access-dialog{width:min(100% - 18px,1080px)}
+  .press-dossier-actions{align-items:stretch;flex-direction:column}
+  .press-dossier-download,.press-dossier-open{width:100%;text-align:center}
+  .press-dossier-preview{min-height:430px;height:56vh}
+}
