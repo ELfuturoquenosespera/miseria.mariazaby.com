@@ -1583,3 +1583,9 @@ main,section,header,footer,.nav-inner,.hero-inner,.promise-inner,.dark-line-inne
   width:100%;
   text-align:center;
 }
+
+/* ===== Ajuste final · encabezado de crítica ligeramente mayor ===== */
+.author-section .author-press-heading{
+  font-size:clamp(29px,2.4vw,40px);
+  line-height:1.04;
+}
