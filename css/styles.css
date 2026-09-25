@@ -1545,20 +1545,27 @@ main,section,header,footer,.nav-inner,.hero-inner,.promise-inner,.dark-line-inne
 @media(max-width:680px){
   .audio-world{
     background:
-      radial-gradient(circle at 84% 44%, rgba(195,146,50,.07) 0%, rgba(58,38,22,.24) 12%, rgba(17,13,10,.74) 30%, #0a0807 63%) !important;
+      radial-gradient(circle at 92% 46%, rgba(228,214,185,.18) 0%, rgba(160,128,76,.10) 7%, rgba(68,48,31,.16) 14%, rgba(12,9,7,.88) 31%, #090706 68%) !important;
   }
   .audio-world::before{
     content:"";
     position:absolute;
     inset:0;
     pointer-events:none;
-    background:linear-gradient(180deg, rgba(7,5,4,.18) 0%, rgba(7,5,4,.30) 100%);
+    background:
+      radial-gradient(circle at 90% 46%, rgba(7,5,4,0) 0%, rgba(7,5,4,.18) 12%, rgba(7,5,4,.52) 24%, rgba(7,5,4,.74) 38%, rgba(7,5,4,.84) 58%, rgba(7,5,4,.90) 100%),
+      linear-gradient(180deg, rgba(7,5,4,.24) 0%, rgba(7,5,4,.42) 100%);
   }
   .audio-world::after{
-    background:linear-gradient(110deg, rgba(6,5,5,.16) 0%, rgba(6,5,5,.08) 46%, rgba(6,5,5,.28) 100%) !important;
+    background:linear-gradient(110deg, rgba(6,5,5,.24) 0%, rgba(6,5,5,.18) 44%, rgba(6,5,5,.40) 100%) !important;
   }
   .audio-inner{
     position:relative;
     z-index:1;
+  }
+  .audio-intro h2,
+  .audio-intro > p,
+  .audio-note{
+    text-shadow:0 2px 12px rgba(0,0,0,.36);
   }
 }
