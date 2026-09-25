@@ -1569,3 +1569,17 @@ main,section,header,footer,.nav-inner,.hero-inner,.promise-inner,.dark-line-inne
     text-shadow:0 2px 12px rgba(0,0,0,.36);
   }
 }
+
+/* ===== Ajuste final · opiniones de la crítica centradas ===== */
+.author-section .author-press-quote{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+}
+.author-section .author-press-quote p,
+.author-section .author-press-quote cite{
+  width:100%;
+  text-align:center;
+}
