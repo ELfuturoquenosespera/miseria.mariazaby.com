@@ -2181,3 +2181,22 @@ main,section,header,footer,.nav-inner,.hero-inner,.promise-inner,.dark-line-inne
     line-height:1.62 !important;
   }
 }
+
+
+/* Segunda línea del titular de atmósfera */
+.atmosphere-copy .atmosphere-section-inner .atmosphere-heading .atmosphere-subline{
+  display:block;
+  margin-top:8px;
+  font-size:clamp(27px,2.45vw,36px);
+  line-height:1.12;
+  letter-spacing:-.018em;
+  white-space:nowrap;
+}
+
+@media(max-width:900px){
+  .atmosphere-copy .atmosphere-section-inner .atmosphere-heading .atmosphere-subline{
+    margin-top:7px;
+    font-size:clamp(23px,5.6vw,31px);
+    white-space:normal;
+  }
+}
