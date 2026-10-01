@@ -192,7 +192,7 @@ summaryVideoClose.addEventListener('click',()=>summaryVideoDialog.close());summa
 })();
 
 
-// Acceso mediante código a la nota de prensa
+// Acceso mediante código a la sala de prensa
 (()=>{
   const dialog=document.getElementById('press-access-dialog');
   const triggers=[...document.querySelectorAll('.press-access-trigger')];
@@ -202,7 +202,36 @@ summaryVideoClose.addEventListener('click',()=>summaryVideoDialog.close());summa
   const error=document.getElementById('press-access-error');
   const lock=document.getElementById('press-access-lock');
   const note=document.getElementById('press-note-full');
+  const roomTabs=[...document.querySelectorAll('.press-room-tab')];
+  const roomPanels=[...document.querySelectorAll('.press-room-panel')];
   if(!dialog||!triggers.length||!form||!input||!lock||!note)return;
+
+  const activateRoomPanel=(tab)=>{
+    const panelId=tab?.dataset.pressPanel;
+    if(!panelId)return;
+    roomTabs.forEach(item=>{
+      const active=item===tab;
+      item.classList.toggle('is-active',active);
+      item.setAttribute('aria-selected',String(active));
+    });
+    roomPanels.forEach(panel=>{panel.hidden=panel.id!==panelId});
+  };
+  roomTabs.forEach((tab,index)=>{
+    tab.addEventListener('click',()=>activateRoomPanel(tab));
+    tab.addEventListener('keydown',event=>{
+      if(!['ArrowRight','ArrowLeft','Home','End'].includes(event.key))return;
+      event.preventDefault();
+      let next;
+      if(event.key==='Home')next=roomTabs[0];
+      else if(event.key==='End')next=roomTabs[roomTabs.length-1];
+      else{
+        const step=event.key==='ArrowRight'?1:-1;
+        next=roomTabs[(index+step+roomTabs.length)%roomTabs.length];
+      }
+      activateRoomPanel(next);
+      next.focus();
+    });
+  });
 
   // Código provisional. Puede sustituirse por cualquier texto o número.
   const ACCESS_CODE='2026';
@@ -212,6 +241,7 @@ summaryVideoClose.addEventListener('click',()=>summaryVideoDialog.close());summa
     lock.hidden=true;
     note.hidden=false;
     error.textContent='';
+    if(roomTabs[0])activateRoomPanel(roomTabs[0]);
     sessionStorage.setItem(SESSION_KEY,'granted');
   };
   const showLock=()=>{
@@ -282,5 +312,67 @@ summaryVideoClose.addEventListener('click',()=>summaryVideoDialog.close());summa
   dialog.addEventListener('close',function(){
     player.pause();
     try{player.currentTime=0}catch(e){}
+  });
+})();
+
+
+// Sala de prensa: visor y descarga de imágenes sin abandonar la página
+(()=>{
+  const buttons=[...document.querySelectorAll('.press-image-view')];
+  const viewer=document.getElementById('press-image-viewer');
+  const preview=document.getElementById('press-image-preview');
+  const title=document.getElementById('press-image-viewer-title');
+  const close=document.getElementById('press-image-viewer-close');
+  const download=document.getElementById('press-image-download-current');
+  if(!buttons.length||!viewer||!preview||!title||!close||!download)return;
+
+  let currentSrc='';
+  let currentName='imagen';
+
+  const openImage=(button)=>{
+    currentSrc=button.dataset.imageSrc||'';
+    currentName=button.dataset.imageName||'imagen';
+    preview.src=currentSrc;
+    preview.alt=button.dataset.imageAlt||button.dataset.imageTitle||'Imagen';
+    title.textContent=button.dataset.imageTitle||'Imagen';
+    viewer.hidden=false;
+    requestAnimationFrame(()=>{
+      viewer.scrollIntoView({behavior:'smooth',block:'nearest'});
+    });
+  };
+
+  const closeImage=()=>{
+    viewer.hidden=true;
+    preview.removeAttribute('src');
+    preview.alt='';
+    currentSrc='';
+    currentName='imagen';
+  };
+
+  buttons.forEach(button=>button.addEventListener('click',()=>openImage(button)));
+  close.addEventListener('click',closeImage);
+
+  download.addEventListener('click',async()=>{
+    if(!currentSrc)return;
+    try{
+      const response=await fetch(currentSrc,{cache:'no-store'});
+      if(!response.ok)throw new Error('No se pudo cargar la imagen');
+      const blob=await response.blob();
+      const url=URL.createObjectURL(blob);
+      const link=document.createElement('a');
+      link.href=url;
+      link.download=currentName;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      setTimeout(()=>URL.revokeObjectURL(url),1000);
+    }catch(error){
+      const link=document.createElement('a');
+      link.href=currentSrc;
+      link.download=currentName;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+    }
   });
 })();
