@@ -316,22 +316,23 @@ summaryVideoClose.addEventListener('click',()=>summaryVideoDialog.close());summa
 })();
 
 
-// Sala de prensa: visor de imágenes.
-// La descarga del JPEG se realiza mediante un enlace HTML autocontenido:
-// no usa fetch(), blob ni navegación externa. Funciona también al abrir
-// index.html localmente sin servidor web.
+// Sala de prensa: visor de imágenes. La imagen y su descarga
+// apuntan al mismo archivo existente en assets/galeria/.
 (()=>{
   const buttons=[...document.querySelectorAll('.press-image-view')];
   const viewer=document.getElementById('press-image-viewer');
   const preview=document.getElementById('press-image-preview');
   const title=document.getElementById('press-image-viewer-title');
+  const download=document.getElementById('press-image-download-current');
   const close=document.getElementById('press-image-viewer-close');
-  if(!buttons.length||!viewer||!preview||!title||!close)return;
+  if(!buttons.length||!viewer||!preview||!title||!close||!download)return;
 
   const openImage=(button)=>{
     preview.src=button.dataset.imageSrc||'';
     preview.alt=button.dataset.imageAlt||button.dataset.imageTitle||'Imagen';
     title.textContent=button.dataset.imageTitle||'Imagen';
+    download.href=button.dataset.imageSrc||'';
+    download.download=button.dataset.imageName||'imagen.jpg';
     viewer.hidden=false;
     requestAnimationFrame(()=>viewer.scrollIntoView({behavior:'smooth',block:'nearest'}));
   };
