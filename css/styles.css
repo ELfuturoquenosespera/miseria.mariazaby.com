@@ -2200,3 +2200,16 @@ main,section,header,footer,.nav-inner,.hero-inner,.promise-inner,.dark-line-inne
     white-space:normal;
   }
 }
+
+/* Miniatura del material gráfico de la sala de prensa */
+.press-image-thumb{display:flex;flex-direction:column;align-items:stretch;gap:12px;width:min(100%,460px);height:auto;padding:12px;text-align:center}
+.press-image-thumb img{display:block;width:100%;height:auto;aspect-ratio:1600/609;object-fit:contain;background:#f7f1e9}
+.press-image-thumb span{padding:0 4px 4px}
+
+/* Descarga de imágenes en sala de prensa */
+.press-image-viewer-actions{flex-wrap:wrap;align-items:center;gap:12px}
+.press-image-download{font-family:var(--sans)}
+.press-image-download:disabled{opacity:.65;cursor:wait;transform:none}
+.press-image-download-status{font:500 12px/1.5 var(--sans);color:#655d5b}
+.press-image-download-fallback{font:600 12px var(--sans);color:#865a1a;text-decoration:underline}
+.press-image-download-fallback[hidden]{display:none}

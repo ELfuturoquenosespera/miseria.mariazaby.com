@@ -316,63 +316,31 @@ summaryVideoClose.addEventListener('click',()=>summaryVideoDialog.close());summa
 })();
 
 
-// Sala de prensa: visor y descarga de imágenes sin abandonar la página
+// Sala de prensa: visor de imágenes.
+// La descarga del JPEG se realiza mediante un enlace HTML autocontenido:
+// no usa fetch(), blob ni navegación externa. Funciona también al abrir
+// index.html localmente sin servidor web.
 (()=>{
   const buttons=[...document.querySelectorAll('.press-image-view')];
   const viewer=document.getElementById('press-image-viewer');
   const preview=document.getElementById('press-image-preview');
   const title=document.getElementById('press-image-viewer-title');
   const close=document.getElementById('press-image-viewer-close');
-  const download=document.getElementById('press-image-download-current');
-  if(!buttons.length||!viewer||!preview||!title||!close||!download)return;
-
-  let currentSrc='';
-  let currentName='imagen';
+  if(!buttons.length||!viewer||!preview||!title||!close)return;
 
   const openImage=(button)=>{
-    currentSrc=button.dataset.imageSrc||'';
-    currentName=button.dataset.imageName||'imagen';
-    preview.src=currentSrc;
+    preview.src=button.dataset.imageSrc||'';
     preview.alt=button.dataset.imageAlt||button.dataset.imageTitle||'Imagen';
     title.textContent=button.dataset.imageTitle||'Imagen';
     viewer.hidden=false;
-    requestAnimationFrame(()=>{
-      viewer.scrollIntoView({behavior:'smooth',block:'nearest'});
-    });
+    requestAnimationFrame(()=>viewer.scrollIntoView({behavior:'smooth',block:'nearest'}));
   };
-
   const closeImage=()=>{
     viewer.hidden=true;
     preview.removeAttribute('src');
     preview.alt='';
-    currentSrc='';
-    currentName='imagen';
   };
 
   buttons.forEach(button=>button.addEventListener('click',()=>openImage(button)));
   close.addEventListener('click',closeImage);
-
-  download.addEventListener('click',async()=>{
-    if(!currentSrc)return;
-    try{
-      const response=await fetch(currentSrc,{cache:'no-store'});
-      if(!response.ok)throw new Error('No se pudo cargar la imagen');
-      const blob=await response.blob();
-      const url=URL.createObjectURL(blob);
-      const link=document.createElement('a');
-      link.href=url;
-      link.download=currentName;
-      document.body.appendChild(link);
-      link.click();
-      link.remove();
-      setTimeout(()=>URL.revokeObjectURL(url),1000);
-    }catch(error){
-      const link=document.createElement('a');
-      link.href=currentSrc;
-      link.download=currentName;
-      document.body.appendChild(link);
-      link.click();
-      link.remove();
-    }
-  });
 })();
