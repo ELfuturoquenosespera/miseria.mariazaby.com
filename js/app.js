@@ -316,8 +316,9 @@ summaryVideoClose.addEventListener('click',()=>summaryVideoDialog.close());summa
 })();
 
 
-// Sala de prensa: mostrar el archivo original de la carpeta y descargarlo
-// como archivo JPG, sin abrir una URL de imagen ni crear un ZIP adicional.
+// Sala de prensa: la imagen siempre procede del fichero assets/galeria/banner.jpg.
+// - Abierta desde disco (file://): usar descarga nativa del navegador.
+// - En una web http(s): descargar bytes y generar un enlace temporal de descarga.
 (()=>{
   const buttons=[...document.querySelectorAll('.press-image-view')];
   const viewer=document.getElementById('press-image-viewer');
@@ -326,15 +327,15 @@ summaryVideoClose.addEventListener('click',()=>summaryVideoDialog.close());summa
   const download=document.getElementById('press-image-download-current');
   const status=document.getElementById('press-image-download-status');
   const close=document.getElementById('press-image-viewer-close');
-  if(!buttons.length||!viewer||!preview||!title||!close||!download)return;
+  if(!buttons.length||!viewer||!preview||!title||!download||!close)return;
 
   const openImage=(button)=>{
     const src=button.dataset.imageSrc||'';
     preview.src=src;
     preview.alt=button.dataset.imageAlt||button.dataset.imageTitle||'Imagen';
     title.textContent=button.dataset.imageTitle||'Imagen';
-    download.dataset.imageSrc=src;
-    download.dataset.imageName=button.dataset.imageName||'imagen.jpg';
+    download.href=src;
+    download.download=button.dataset.imageName||'imagen.jpg';
     if(status)status.textContent='';
     viewer.hidden=false;
     requestAnimationFrame(()=>viewer.scrollIntoView({behavior:'smooth',block:'nearest'}));
@@ -347,35 +348,38 @@ summaryVideoClose.addEventListener('click',()=>summaryVideoDialog.close());summa
   };
 
   download.addEventListener('click',async(event)=>{
-    // Siempre se procesa la pulsación aquí; jamás se navega a la imagen.
+    // fetch() no puede leer normalmente ficheros file:// en Chrome.
+    // En ese caso dejamos actuar al <a download>, sin abrir pestañas nuevas.
+    if(location.protocol==='file:')return;
+    if(!['http:','https:'].includes(location.protocol))return;
+
     event.preventDefault();
     event.stopPropagation();
-    if(download.disabled)return;
-    const src=download.dataset.imageSrc;
+    const src=download.getAttribute('href');
     if(!src)return;
-    download.disabled=true;
     if(status)status.textContent='Preparando descarga…';
     try{
-      // Archivo existente en la propia web, sin imágenes incrustadas.
-      const response=await fetch(src,{credentials:'same-origin',cache:'no-store'});
-      if(!response.ok)throw new Error(`HTTP ${response.status}`);
+      const response=await fetch(src,{credentials:'same-origin'});
+      if(!response.ok)throw new Error('HTTP '+response.status);
       const blob=await response.blob();
-      if(!blob.size||!blob.type.startsWith('image/'))throw new Error('La respuesta no es una imagen');
+      if(blob.size<3)throw new Error('Archivo vacío');
+      // Comprobamos el contenido y no el Content-Type, que puede estar mal
+      // configurado incluso cuando el JPG se muestra correctamente.
+      const header=new Uint8Array(await blob.slice(0,3).arrayBuffer());
+      if(header[0]!==255||header[1]!==216||header[2]!==255)throw new Error('El archivo no es un JPEG');
       const fileUrl=URL.createObjectURL(blob);
       const link=document.createElement('a');
       link.href=fileUrl;
-      link.download=download.dataset.imageName||'imagen.jpg';
+      link.download=download.getAttribute('download')||'banner.jpg';
       link.style.display='none';
       document.body.appendChild(link);
       link.click();
       link.remove();
-      setTimeout(()=>URL.revokeObjectURL(fileUrl),60000);
-      if(status)status.textContent='Descarga iniciada.';
+      setTimeout(()=>URL.revokeObjectURL(fileUrl),30000);
+      if(status)status.textContent='';
     }catch(error){
-      console.error('Error al descargar la imagen de prensa:',error);
-      if(status)status.textContent='No ha sido posible descargar la imagen. Comprueba que el archivo esté publicado en assets/galeria/.';
-    }finally{
-      download.disabled=false;
+      console.error('No se ha podido descargar la imagen:',error);
+      if(status)status.textContent='No se pudo iniciar la descarga desde esta página. Comprueba que se abre desde una web y que banner.jpg es accesible.';
     }
   });
   buttons.forEach(button=>button.addEventListener('click',()=>openImage(button)));
