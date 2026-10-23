@@ -316,7 +316,7 @@ summaryVideoClose.addEventListener('click',()=>summaryVideoDialog.close());summa
 })();
 
 
-// Sala de prensa: la imagen siempre procede del fichero assets/galeria/banner.jpg.
+// Sala de prensa: las cuatro imágenes se muestran en un visor modal y se descargan individualmente.
 // - Abierta desde disco (file://): usar descarga nativa del navegador.
 // - En una web http(s): descargar bytes y generar un enlace temporal de descarga.
 (()=>{
@@ -337,15 +337,16 @@ summaryVideoClose.addEventListener('click',()=>summaryVideoDialog.close());summa
     download.href=src;
     download.download=button.dataset.imageName||'imagen.jpg';
     if(status)status.textContent='';
-    viewer.hidden=false;
-    requestAnimationFrame(()=>viewer.scrollIntoView({behavior:'smooth',block:'nearest'}));
+    if(!viewer.open)viewer.showModal();
   };
   const closeImage=()=>{
-    viewer.hidden=true;
+    if(viewer.open)viewer.close();
+  };
+  viewer.addEventListener('close',()=>{
     preview.removeAttribute('src');
     preview.alt='';
     if(status)status.textContent='';
-  };
+  });
 
   download.addEventListener('click',async(event)=>{
     // fetch() no puede leer normalmente ficheros file:// en Chrome.
@@ -370,7 +371,7 @@ summaryVideoClose.addEventListener('click',()=>summaryVideoDialog.close());summa
       const fileUrl=URL.createObjectURL(blob);
       const link=document.createElement('a');
       link.href=fileUrl;
-      link.download=download.getAttribute('download')||'banner.jpg';
+      link.download=download.getAttribute('download')||'imagen.jpg';
       link.style.display='none';
       document.body.appendChild(link);
       link.click();
@@ -379,9 +380,10 @@ summaryVideoClose.addEventListener('click',()=>summaryVideoDialog.close());summa
       if(status)status.textContent='';
     }catch(error){
       console.error('No se ha podido descargar la imagen:',error);
-      if(status)status.textContent='No se pudo iniciar la descarga desde esta página. Comprueba que se abre desde una web y que banner.jpg es accesible.';
+      if(status)status.textContent='No se pudo iniciar la descarga desde esta página. Comprueba que la imagen está disponible en el servidor.';
     }
   });
   buttons.forEach(button=>button.addEventListener('click',()=>openImage(button)));
   close.addEventListener('click',closeImage);
+  viewer.addEventListener('click',event=>{if(event.target===viewer)closeImage()});
 })();

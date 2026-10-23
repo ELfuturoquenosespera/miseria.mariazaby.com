@@ -2213,3 +2213,133 @@ main,section,header,footer,.nav-inner,.hero-inner,.promise-inner,.dark-line-inne
 .press-image-download-status{font:500 12px/1.5 var(--sans);color:#655d5b}
 .press-image-download-fallback{font:600 12px var(--sans);color:#865a1a;text-decoration:underline}
 .press-image-download-fallback[hidden]{display:none}
+
+
+/* Sala de prensa — mosaico de cuatro imágenes, a tamaño completo al pulsar. */
+.press-image-actions{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:14px;
+  width:100%;
+  margin-top:24px;
+}
+.press-image-actions .press-image-thumb{
+  display:flex;
+  flex-direction:column;
+  align-items:stretch;
+  justify-content:flex-start;
+  gap:0;
+  width:100%;
+  min-width:0;
+  min-height:0;
+  height:auto;
+  padding:0;
+  overflow:hidden;
+  border:1px solid #d4c5b6;
+  background:#ede6dd;
+  text-align:left;
+  letter-spacing:normal;
+  box-shadow:0 7px 24px rgba(45,29,16,.055);
+  transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease;
+}
+.press-image-actions .press-image-thumb:hover,
+.press-image-actions .press-image-thumb:focus-visible{
+  transform:translateY(-3px);
+  border-color:#ac801e;
+  box-shadow:0 12px 24px rgba(45,29,16,.13);
+  outline-offset:3px;
+}
+.press-image-actions .press-image-thumb > img{
+  display:block;
+  flex:1 1 auto;
+  width:100%;
+  min-width:0;
+  height:270px;
+  aspect-ratio:auto;
+  object-fit:contain;
+  object-position:center;
+  background:#e6dfd7;
+}
+.press-image-actions .press-image-thumb-banner{grid-column:1 / -1}
+.press-image-actions .press-image-thumb-banner > img{
+  flex:0 0 auto;
+  height:auto;
+  aspect-ratio:1600/609;
+  object-fit:contain;
+}
+.press-image-actions .press-image-thumb > span{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  width:100%;
+  min-height:46px;
+  margin:0;
+  padding:12px 15px;
+  background:#fffaf5;
+  border-top:1px solid #d4c5b6;
+  color:#342a26;
+  font:700 12px/1.4 var(--sans);
+  letter-spacing:.02em;
+  text-align:left;
+}
+.press-image-actions .press-image-thumb > span span{
+  color:#9b751c;
+  font-size:18px;
+  font-weight:400;
+  line-height:1;
+}
+/* Visor independiente: centrado delante de la sala de prensa. */
+.press-image-viewer{
+  position:fixed;
+  width:min(900px,calc(100vw - 28px));
+  max-width:900px;
+  max-height:calc(100dvh - 28px);
+  margin:auto;
+  padding:0;
+  overflow:hidden;
+  border:1px solid #cdbeb0;
+  background:#f7f1e9;
+  color:#211a1a;
+  box-shadow:0 26px 100px rgba(0,0,0,.5);
+}
+.press-image-viewer:not([open]){display:none}
+.press-image-viewer::backdrop{
+  background:rgba(9,6,7,.8);
+  backdrop-filter:blur(5px);
+}
+.press-image-viewer .press-image-viewer-head{
+  padding:14px 22px;
+}
+.press-image-viewer .press-image-preview{
+  box-sizing:border-box;
+  height:min(65dvh,650px);
+  min-height:180px;
+  max-height:65dvh;
+  padding:22px;
+  overflow:hidden;
+  background:#e8e0d7;
+}
+.press-image-viewer .press-image-preview img{
+  width:auto;
+  height:auto;
+  max-width:100%;
+  max-height:100%;
+  object-fit:contain;
+}
+.press-image-viewer .press-image-viewer-actions{
+  align-items:center;
+  justify-content:center;
+  padding:16px 22px;
+}
+@media(max-width:650px){
+  .press-image-actions{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .press-image-actions .press-image-thumb > img{height:220px}
+  .press-image-actions .press-image-thumb-banner > img{height:auto}
+  .press-image-actions .press-image-thumb-portrait{grid-column:1 / -1}
+  .press-image-actions .press-image-thumb-portrait > img{height:270px}
+  .press-image-actions .press-image-thumb > span{padding:10px 12px;font-size:11px}
+  .press-image-viewer .press-image-preview{height:min(61dvh,580px);max-height:61dvh;padding:12px}
+  .press-image-viewer .press-image-viewer-head{padding:12px 14px}
+  .press-image-viewer .press-image-viewer-actions{padding:12px 14px}
+}
