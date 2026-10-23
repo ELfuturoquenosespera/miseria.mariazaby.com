@@ -316,23 +316,26 @@ summaryVideoClose.addEventListener('click',()=>summaryVideoDialog.close());summa
 })();
 
 
-// Sala de prensa: visor de imágenes. La imagen y su descarga
-// apuntan al mismo archivo existente en assets/galeria/.
+// Sala de prensa: mostrar el archivo original de la carpeta y descargarlo
+// como archivo JPG, sin abrir una URL de imagen ni crear un ZIP adicional.
 (()=>{
   const buttons=[...document.querySelectorAll('.press-image-view')];
   const viewer=document.getElementById('press-image-viewer');
   const preview=document.getElementById('press-image-preview');
   const title=document.getElementById('press-image-viewer-title');
   const download=document.getElementById('press-image-download-current');
+  const status=document.getElementById('press-image-download-status');
   const close=document.getElementById('press-image-viewer-close');
   if(!buttons.length||!viewer||!preview||!title||!close||!download)return;
 
   const openImage=(button)=>{
-    preview.src=button.dataset.imageSrc||'';
+    const src=button.dataset.imageSrc||'';
+    preview.src=src;
     preview.alt=button.dataset.imageAlt||button.dataset.imageTitle||'Imagen';
     title.textContent=button.dataset.imageTitle||'Imagen';
-    download.href=button.dataset.imageSrc||'';
-    download.download=button.dataset.imageName||'imagen.jpg';
+    download.dataset.imageSrc=src;
+    download.dataset.imageName=button.dataset.imageName||'imagen.jpg';
+    if(status)status.textContent='';
     viewer.hidden=false;
     requestAnimationFrame(()=>viewer.scrollIntoView({behavior:'smooth',block:'nearest'}));
   };
@@ -340,8 +343,41 @@ summaryVideoClose.addEventListener('click',()=>summaryVideoDialog.close());summa
     viewer.hidden=true;
     preview.removeAttribute('src');
     preview.alt='';
+    if(status)status.textContent='';
   };
 
+  download.addEventListener('click',async(event)=>{
+    // Siempre se procesa la pulsación aquí; jamás se navega a la imagen.
+    event.preventDefault();
+    event.stopPropagation();
+    if(download.disabled)return;
+    const src=download.dataset.imageSrc;
+    if(!src)return;
+    download.disabled=true;
+    if(status)status.textContent='Preparando descarga…';
+    try{
+      // Archivo existente en la propia web, sin imágenes incrustadas.
+      const response=await fetch(src,{credentials:'same-origin',cache:'no-store'});
+      if(!response.ok)throw new Error(`HTTP ${response.status}`);
+      const blob=await response.blob();
+      if(!blob.size||!blob.type.startsWith('image/'))throw new Error('La respuesta no es una imagen');
+      const fileUrl=URL.createObjectURL(blob);
+      const link=document.createElement('a');
+      link.href=fileUrl;
+      link.download=download.dataset.imageName||'imagen.jpg';
+      link.style.display='none';
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      setTimeout(()=>URL.revokeObjectURL(fileUrl),60000);
+      if(status)status.textContent='Descarga iniciada.';
+    }catch(error){
+      console.error('Error al descargar la imagen de prensa:',error);
+      if(status)status.textContent='No ha sido posible descargar la imagen. Comprueba que el archivo esté publicado en assets/galeria/.';
+    }finally{
+      download.disabled=false;
+    }
+  });
   buttons.forEach(button=>button.addEventListener('click',()=>openImage(button)));
   close.addEventListener('click',closeImage);
 })();
