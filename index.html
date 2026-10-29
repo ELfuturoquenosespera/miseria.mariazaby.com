@@ -105,10 +105,87 @@
   </script>
   <link rel="preload" as="image" href="assets/miseria-hero.png" fetchpriority="high">
   <link rel="stylesheet" href="css/styles.css?v=prensa-20261029b">
+  <style>
+    /* Cambios localizados a «En los medios» y a las opiniones de la crítica. */
+    #prensa .press-head { display:block; }
+    #prensa .press-head h2 { white-space:nowrap; }
+
+    .author-section .author-press-voices {
+      display:block;
+    }
+    .author-section .author-press-heading {
+      max-width:none;
+      margin:0 0 clamp(30px,3.7vw,52px);
+      text-align:center;
+      font:600 clamp(28px,3.9vw,57px)/1.14 var(--serif);
+      letter-spacing:-.026em;
+      white-space:nowrap;
+    }
+    .author-section .author-press-quotes {
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:clamp(24px,2.6vw,38px);
+    }
+    .author-section .author-press-quote {
+      padding:clamp(26px,3vw,42px);
+    }
+    .author-section .author-press-quote p {
+      font-weight:400;
+      font-size:clamp(18px,1.6vw,22px);
+      line-height:1.45;
+    }
+    .author-section .author-press-quote cite {
+      margin-top:20px;
+      font-size:15px;
+      font-weight:800;
+      letter-spacing:.13em;
+    }
+    @media (max-width:900px) {
+      .author-section .author-press-heading { white-space:normal; }
+    }
+    @media (max-width:620px) {
+      .author-section .author-press-quotes { grid-template-columns:1fr; }
+      .author-section .author-press-heading { font-size:clamp(28px,6vw,39px); }
+    }
+
+    /* Enlaces de Instagram bajo el retrato de la autora. */
+    .author-section .author-instagram-links {
+      position:relative;
+      z-index:2;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      gap:12px 22px;
+      flex-wrap:wrap;
+      margin:22px auto 0;
+      padding:0 4px;
+    }
+    .author-section .author-instagram-links a {
+      display:inline-flex;
+      align-items:center;
+      gap:7px;
+      color:#96681c;
+      text-decoration:none;
+      font:700 13px/1.4 var(--sans);
+      white-space:nowrap;
+      transition:color .15s ease;
+    }
+    .author-section .author-instagram-links a:hover,
+    .author-section .author-instagram-links a:focus-visible {
+      color:#57370c;
+      text-decoration:underline;
+      text-underline-offset:4px;
+    }
+    .author-section .author-instagram-links svg {
+      width:20px;
+      height:20px;
+      flex-shrink:0;
+    }
+  </style>
 </head>
 <body>
   <a class="skip" href="#contenido">Saltar al contenido</a>
-  <header class="nav"><div class="nav-inner"><a class="wordmark" href="#inicio" aria-label="Miseria, inicio">MISERIA</a><button class="menu" type="button" aria-expanded="false" aria-controls="navigation">Menú</button><nav class="nav-links" id="navigation" aria-label="Navegación principal"><a href="#historia">La historia</a><a href="#primera-pagina">Primera página</a><a href="#audio">En audio</a><a href="#miseria-characters">Personajes</a><a href="#prensa">En los medios </a><a href="#autora">María Zabay</a><button class="press-access-trigger" type="button">Sala de prensa</button><button class="buy purchase-trigger" type="button">Comprar la novela</button></nav></div></header>
+  <header class="nav"><div class="nav-inner"><a class="wordmark" href="#inicio" aria-label="Miseria, inicio">MISERIA</a><button class="menu" type="button" aria-expanded="false" aria-controls="navigation">Menú</button><nav class="nav-links" id="navigation" aria-label="Navegación principal"><a href="#historia">La historia</a><a href="#primera-pagina">Primera página</a><a href="#audio">En audio</a><a href="#miseria-characters">Personajes</a><a href="#prensa">Miseria en los medios</a><a href="#autora">María Zabay</a><button class="press-access-trigger" type="button">Sala de prensa</button><button class="buy purchase-trigger" type="button">Comprar la novela</button></nav></div></header>
   <main id="contenido">
     <section class="hero" id="inicio"><div class="hero-inner"><div class="hero-copy"><div class="eyebrow">María Zabay · Nueva novela</div><h1>Una novela sobre el poder <em>y quienes viven de él</em></h1><p class="hero-sub">Una vida envidiable. Un hombre que la desprecia.</p><blockquote class="hero-quote"><div class="hero-quote-content"><span>«Una novela impactante, sorprenderá»,</span><cite>JULIA NAVARRO</cite></div></blockquote><div class="signals"><span>Poder</span><span>Herencia</span><span>Deseo</span><span>Conciencia</span></div>
     
@@ -279,7 +356,6 @@
       <div class="press-inner">
         <div class="press-head">
           <div><h2>En los medios</h2></div>
-          <p>Entrevistas, encuentros y artículos para descubrir la novela desde la voz de María Zabay y de quienes se acerquen a su universo.</p>
         </div>
         <div class="press-grid" aria-label="Secciones de prensa">
           <a class="press-card press-card--link" href="prensa/radio-y-television.html" aria-label="Ver la sección Radio y televisión">
@@ -328,7 +404,7 @@
 <figure class="author-book"><img alt="Portada de Un viaje al éxito, de María Zabay" loading="lazy" src="assets/libros/libro6.jpg"/></figure>
 <figure class="author-book"><img alt="Portada de Liderar con la palabra, de María Zabay" loading="lazy" src="assets/libros/libro8.jpg"/></figure>
 <figure class="author-book"><img alt="Portada de Todos contra el bullying, de María Zabay y Antonio Casado" loading="lazy" src="assets/libros/libro11.jpg"/></figure>
-</div></div></div><div class="author-visual-column"><div class="author-visual-sticky"><figure class="author-portrait"><img alt="Retrato de María Zabay" loading="lazy" src="assets/maria-zabay-retrato.jpg"/></figure><blockquote class="author-photo-quote">“Entiendo la literatura como un instrumento de cambio”</blockquote></div></div></div><div aria-label="Opiniones de la crítica sobre María Zabay" class="author-press-voices">
+</div></div></div><div class="author-visual-column"><div class="author-visual-sticky"><figure class="author-portrait"><img alt="Retrato de María Zabay" loading="lazy" src="assets/maria-zabay-retrato.jpg"/></figure><nav class="author-instagram-links" aria-label="Instagram de la autora y de la novela"><a href="https://www.instagram.com/maria_zabay/" target="_blank" rel="noopener noreferrer" aria-label="Instagram de María Zabay"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg><span>María Zabay</span></a><a href="https://www.instagram.com/novelamiseria/" target="_blank" rel="noopener noreferrer" aria-label="Instagram de la novela Miseria"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg><span>Miseria</span></a></nav><blockquote class="author-photo-quote">“Entiendo la literatura como un instrumento de cambio”</blockquote></div></div></div><div aria-label="Opiniones de la crítica sobre María Zabay" class="author-press-voices">
 
 <div class="author-press-heading">Lo que la crítica opina de ella y de sus obras</div>
 
