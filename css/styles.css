@@ -2343,3 +2343,25 @@ main,section,header,footer,.nav-inner,.hero-inner,.promise-inner,.dark-line-inne
   .press-image-viewer .press-image-viewer-head{padding:12px 14px}
   .press-image-viewer .press-image-viewer-actions{padding:12px 14px}
 }
+
+
+/* Prensa: misma tarjeta que la web original, ahora clicable.
+   Único cambio cromático: títulos en el dorado del diseño original. */
+.press-grid > [hidden] { display:none !important; }
+.press-grid .press-card--link { color:inherit; text-decoration:none; cursor:pointer; }
+.press-grid .press-card--link h3 { color:#d7ab56; }
+.press-grid .press-card--link .press-card__action {
+  position:relative;
+  z-index:1;
+  align-self:flex-start;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  color:#d7ab56;
+  font:600 11px/1.4 var(--sans);
+  letter-spacing:.11em;
+  text-transform:uppercase;
+}
+.press-grid .press-card--link:hover h3,
+.press-grid .press-card--link:focus-visible h3 { color:#edc578; }
+.press-grid .press-card--link:focus-visible { outline:2px solid #d7ab56; outline-offset:4px; }
