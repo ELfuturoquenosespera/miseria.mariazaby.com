@@ -182,7 +182,7 @@
     }
     /* Solo la cita de apertura: tamaño y separación respecto al título y al botón. */
     .first-page .opening-quote {
-      font:400 clamp(18px,1.8vw,24px)/1.5 var(--sans);
+      font:400 clamp(17px,1.65vw,22px)/1.52 var(--sans);
     }
     .first-page h2 { margin-bottom:38px; }
     .first-page .first-page-actions { margin-top:38px; }
@@ -198,6 +198,74 @@
       font-style:normal;
       letter-spacing:.13em;
       text-transform:uppercase;
+    }
+    /* Visor de lectura: la página aprovecha el espacio disponible sin deformarse. */
+    #reader-dialog .reader-pages-nav { display:none !important; }
+    #reader-dialog .reader-page-viewport { padding:8px 10px; }
+    #reader-dialog .reader-page-sheet { position:relative; width:100%; height:100%; }
+    #reader-dialog .reader-page-leaf {
+      position:relative;
+      display:block;
+      max-width:100%;
+      max-height:calc(88vh - 22px);
+    }
+    #reader-dialog .reader-page-leaf > img {
+      display:block;
+      width:auto;
+      height:auto;
+      max-width:100%;
+      max-height:calc(88vh - 22px);
+      object-fit:contain;
+    }
+    #reader-dialog .reader-page-leaf:has(> img[hidden]) { display:none; }
+    /* El reproductor aparece solo en la página narrada, dentro de la hoja.
+       No modifica su altura ni desplaza las flechas. */
+    #reader-dialog .reader-page-leaf .reading-audio:not([hidden]) {
+      position:absolute;
+      z-index:5;
+      left:50%;
+      right:auto;
+      bottom:20px;
+      transform:translateX(-50%);
+      width:min(88%,340px);
+      display:grid;
+      grid-template-columns:auto minmax(40px,1fr) auto;
+      gap:10px;
+      padding:9px 11px;
+      border:1px solid rgba(161,109,34,.4);
+      border-radius:5px;
+      background:rgba(255,252,248,.97);
+      box-shadow:0 5px 20px rgba(27,21,17,.14);
+      color:#4a3522;
+      backdrop-filter:none;
+    }
+    #reader-dialog .reading-play {
+      border:1px solid #b98a39;
+      background:#c39232;
+      color:#19110b;
+      padding:9px 12px;
+      border-radius:3px;
+      font:700 11px/1.25 var(--sans);
+      letter-spacing:.025em;
+      text-transform:none;
+    }
+    #reader-dialog .reading-progress {background:#d4c5b0;}
+    #reader-dialog .reading-progress span {background:#a27627;box-shadow:none;}
+    #reader-dialog .reading-time {color:#625447;}
+    @media(max-width:540px) {
+      #reader-dialog .reader-page-viewport {padding:9px 30px;}
+      #reader-dialog .reader-page-leaf {max-height:calc(90vh - 20px);}
+      #reader-dialog .reader-page-leaf > img {max-height:calc(90vh - 20px);}
+      #reader-dialog .reader-page-leaf .reading-audio:not([hidden]) {
+        top:12px;
+        bottom:auto;
+        width:min(94%,280px);
+        grid-template-columns:auto minmax(0,1fr) auto;
+        gap:7px;
+        padding:7px;
+      }
+      #reader-dialog .reading-play {grid-column:auto;padding:7px 9px;font-size:11px;}
+      #reader-dialog .reading-time {min-width:30px;font-size:11px;}
     }
   </style>
 </head>
@@ -549,7 +617,7 @@
       <span class="press-image-download-status" id="press-image-download-status" role="status" aria-live="polite"></span>
     </div>
   </dialog>
-  <dialog class="reader-dialog" id="reader-dialog" aria-label="Primeras páginas de Miseria"><button class="reader-close" type="button" id="close-reader" aria-label="Cerrar el libro">×</button><div class="open-book" id="open-book"><div class="book-inside" aria-hidden="true"><img src="assets/front.jpg" alt="Portada frontal de Miseria"></div><div class="reader-opening-cover" id="reader-opening-cover" aria-hidden="true"><img src="assets/front.jpg" alt=""></div><div class="book-page"><div class="reader-page-viewport" id="reader-page-viewport"><button class="reader-page-arrow reader-page-prev" type="button" id="reader-page-prev" aria-label="Página anterior">‹</button><div class="reader-page-sheet" id="reader-page-sheet"><img id="reader-page-image" src="assets/primeras-paginas/pagina-01.png" alt="Página 1 de las primeras páginas de Miseria"><div class="reader-end-card" id="reader-end-card" hidden><div class="reader-end-overlay"><p class="reader-end-kicker">Has llegado al final del avance</p><h3>Para seguir leyendo</h3><p>Descubre la novela completa y adéntrate en todo el universo de <em>Miseria</em>.</p><button class="buy purchase-trigger" type="button">Comprar la novela</button></div></div></div><button class="reader-page-arrow reader-page-next" type="button" id="reader-page-next" aria-label="Página siguiente">›</button></div><div class="reader-pages-nav"><button type="button" id="reader-prev-bottom" aria-label="Página anterior">←</button><span id="reader-page-count" aria-live="polite">1 / 10</span><button type="button" id="reader-next-bottom" aria-label="Página siguiente">→</button></div><div class="reading-audio" id="reading-audio-bar"><button class="reading-play" type="button" id="reading-play" aria-label="Oír la lectura de la primera página">Oír lectura</button><div class="reading-progress" id="reading-progress" role="slider" aria-label="Progreso de la lectura" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" tabindex="0"><span id="reading-progress-fill"></span></div><span class="reading-time" id="reading-time">0:00</span><audio id="reading-audio" preload="metadata" src="assets/audio/lecturaprimerapagina.mp3"></audio></div></div></div></dialog>
+  <dialog class="reader-dialog" id="reader-dialog" aria-label="Primeras páginas de Miseria"><button class="reader-close" type="button" id="close-reader" aria-label="Cerrar el libro">×</button><div class="open-book" id="open-book"><div class="book-inside" aria-hidden="true"><img src="assets/front.jpg" alt="Portada frontal de Miseria"></div><div class="reader-opening-cover" id="reader-opening-cover" aria-hidden="true"><img src="assets/front.jpg" alt=""></div><div class="book-page"><div class="reader-page-viewport" id="reader-page-viewport"><button class="reader-page-arrow reader-page-prev" type="button" id="reader-page-prev" aria-label="Página anterior">‹</button><div class="reader-page-sheet" id="reader-page-sheet"><div class="reader-page-leaf"><img id="reader-page-image" src="assets/primeras-paginas/pagina-01.png" alt="Página 1 de las primeras páginas de Miseria"><div class="reading-audio" id="reading-audio-bar"><button class="reading-play" type="button" id="reading-play" aria-label="Oír la lectura de la primera página">Oír lectura</button><div class="reading-progress" id="reading-progress" role="slider" aria-label="Progreso de la lectura" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" tabindex="0"><span id="reading-progress-fill"></span></div><span class="reading-time" id="reading-time">0:00</span><audio id="reading-audio" preload="metadata" src="assets/audio/lecturaprimerapagina.mp3"></audio></div></div><div class="reader-end-card" id="reader-end-card" hidden><div class="reader-end-overlay"><p class="reader-end-kicker">Has llegado al final del avance</p><h3>Para seguir leyendo</h3><p>Descubre la novela completa y adéntrate en todo el universo de <em>Miseria</em>.</p><button class="buy purchase-trigger" type="button">Comprar la novela</button></div></div></div><button class="reader-page-arrow reader-page-next" type="button" id="reader-page-next" aria-label="Página siguiente">›</button></div><div class="reader-pages-nav"><button type="button" id="reader-prev-bottom" aria-label="Página anterior">←</button><span id="reader-page-count" aria-live="polite">1 / 10</span><button type="button" id="reader-next-bottom" aria-label="Página siguiente">→</button></div></div></div></dialog>
   <dialog class="hero-video-dialog" id="hero-video-dialog" aria-label="Vídeo de Miseria"><button class="hero-video-close" type="button" id="hero-video-close" aria-label="Cerrar vídeo">×</button><div class="hero-video-frame"><video id="hero-video-player" controls playsinline preload="metadata"><source src="assets/videomiseriahero.mp4" type="video/mp4">Tu navegador no puede reproducir este vídeo.</video></div></dialog>
   <dialog class="summary-video-dialog" id="summary-video-dialog" aria-label="Vídeo: ¿De qué va Miseria?"><button class="summary-video-close" type="button" id="summary-video-close" aria-label="Cerrar vídeo">×</button><div class="summary-video-frame"><video id="summary-video" controls playsinline preload="metadata"><source src="assets/video-resumen.mp4" type="video/mp4">Tu navegador no puede reproducir este vídeo.</video></div></dialog>
   <dialog class="purchase-dialog" id="purchase-dialog" aria-label="Comprar Miseria"><div class="purchase-dialog-inner"><button class="purchase-close" type="button" id="purchase-close" aria-label="Cerrar">×</button><div class="section-no">Comprar la novela</div><h2>Elige dónde comprar <em>Miseria</em>.</h2><p>Selecciona una de las tiendas oficiales.</p><div class="shop-options"><a class="shop-option" href="https://www.amazon.es/dp/B0HKG4WD7J?dplnkId=7d91ecec-a0d8-40e8-b8e0-a2126d2004b3&amp;nodl=1" target="_blank" rel="noopener noreferrer" aria-label="Comprar Miseria en Amazon">Amazon ↗</a><a class="shop-option" href="https://editorialberenice.com/libro/miseria" target="_blank" rel="noopener noreferrer" aria-label="Comprar Miseria en Editorial Berenice">Editorial Berenice ↗</a></div><p class="shop-note">Los enlaces se abren en una nueva pestaña.</p></div></dialog>
@@ -571,6 +639,21 @@
     <div class="cookie-actions"><button class="cookie-secondary" id="cookie-reject" type="button">Rechazar</button><button class="cookie-info" id="cookie-info" type="button">Más información</button><button class="cookie-primary" id="cookie-accept" type="button">Aceptar</button></div>
   </div>
 
+  <script>
+    /* El botón de la página narrada refleja el estado real del audio. */
+    (() => {
+      const audio=document.getElementById('reading-audio');
+      const button=document.getElementById('reading-play');
+      if(!audio||!button)return;
+      const update=()=>{
+        const playing=!audio.paused&&!audio.ended;
+        button.textContent=playing?'❚❚ Pausar':'▶ Escuchar';
+        button.setAttribute('aria-label',playing?'Pausar la lectura':'Reproducir la lectura');
+      };
+      ['play','pause','ended'].forEach(name=>audio.addEventListener(name,update));
+      update();
+    })();
+  </script>
   <script src="js/app.js?v=descarga-jpg-20261023-2" defer></script>
 </body>
 </html>
