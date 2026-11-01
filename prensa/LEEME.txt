@@ -1,0 +1,13 @@
+PRENSA INDEPENDIENTE
+
+Sustituye solamente la carpeta prensa/ de tu web por esta carpeta.
+No cambies index.html ni las carpetas css/, js/ o assets/ de la web principal.
+
+Entradas: prensa-escrita.html, radio-y-television.html, blogs.html y podcast.html.
+CSS propio: css/prensa.css. Imágenes locales: assets/.
+No requiere JavaScript.
+Se conserva el contenido y la cascada de estilos originales, incluidos los ajustes móviles.
+Las reglas originales se han copiado dentro del CSS de prensa para conservar su apariencia sin depender del CSS principal.
+Los enlaces de regreso apuntan a https://miseria.mariazabay.com/index.html.
+Google Fonts, los iconos de medios y la imagen de El Debate conservan sus direcciones externas: requieren conexión a Internet.
+La independencia es respecto a los archivos de la web principal, no un modo sin conexión.
