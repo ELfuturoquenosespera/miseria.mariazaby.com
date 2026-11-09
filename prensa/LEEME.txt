@@ -1,13 +1,17 @@
-PRENSA INDEPENDIENTE
+PRENSA INDEPENDIENTE — MISERIA
 
-Sustituye solamente la carpeta prensa/ de tu web por esta carpeta.
-No cambies index.html ni las carpetas css/, js/ o assets/ de la web principal.
+Las tres secciones de la web son:
+- prensa-escrita.html
+- radio-y-television.html
+- blog-y-podcast.html (incluye la entrevista de María Zabay en Oír y Ver del 9/11/2026)
 
-Entradas: prensa-escrita.html, radio-y-television.html, blogs.html y podcast.html.
-CSS propio: css/prensa.css. Imágenes locales: assets/.
-No requiere JavaScript.
-Se conserva el contenido y la cascada de estilos originales, incluidos los ajustes móviles.
-Las reglas originales se han copiado dentro del CSS de prensa para conservar su apariencia sin depender del CSS principal.
-Los enlaces de regreso apuntan a https://miseria.mariazabay.com/index.html.
-Google Fonts, los iconos de medios y la imagen de El Debate conservan sus direcciones externas: requieren conexión a Internet.
-La independencia es respecto a los archivos de la web principal, no un modo sin conexión.
+La página principal index.html enlaza a estas tres secciones en ese orden.
+Las antiguas páginas prensa/blogs.html y prensa/podcast.html se han eliminado del paquete.
+
+Para publicar: sustituye index.html y la carpeta prensa/ por los de este paquete.
+Si publicas archivos individuales en lugar de reemplazar la carpeta completa, elimina
+además del servidor las dos páginas antiguas (blogs.html y podcast.html).
+
+La sección de prensa tiene CSS propio: prensa/css/prensa.css.
+Conserva la estructura de carpetas para que se muestren bien las imágenes y estilos.
+Algunas imágenes, fuentes y enlaces de medios se cargan desde sitios externos.
