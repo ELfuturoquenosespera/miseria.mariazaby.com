@@ -12,7 +12,7 @@ tabs.forEach(t=>t.addEventListener('click',()=>showChar(Number(t.dataset.char)))
 const menuToggle=document.getElementById('menuToggle'),nav=document.getElementById('navigation');
 function closeMenu(){nav.classList.remove('open');menuToggle.setAttribute('aria-expanded','false');menuToggle.textContent='☰';document.body.classList.remove('menu-open')}
 menuToggle.addEventListener('click',()=>{let next=!nav.classList.contains('open');nav.classList.toggle('open',next);menuToggle.setAttribute('aria-expanded',String(next));menuToggle.textContent=next?'×':'☰';document.body.classList.toggle('menu-open',next)});nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeMenu));
-const shop=document.getElementById('shopDialog'),press=document.getElementById('pressDialog');document.querySelectorAll('[data-shop]').forEach(b=>b.addEventListener('click',()=>shop.showModal()));['pressAccessTop','pressAccessBottom'].forEach(id=>document.getElementById(id).addEventListener('click',()=>press.showModal()));document.querySelectorAll('[data-close]').forEach(b=>b.addEventListener('click',()=>b.closest('dialog').close()));[shop,press].forEach(d=>d.addEventListener('click',e=>{if(e.target===d)d.close()}));
+const shop=document.getElementById('shopDialog');document.querySelectorAll('[data-shop]').forEach(b=>b.addEventListener('click',()=>shop.showModal()));document.querySelectorAll('[data-close]').forEach(b=>b.addEventListener('click',()=>b.closest('dialog').close()));shop.addEventListener('click',e=>{if(e.target===shop)shop.close()});
 
 
 // Reproducción de los archivos incluidos en el sitio.

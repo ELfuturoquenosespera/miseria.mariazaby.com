@@ -1,0 +1,53 @@
+/* Sala de prensa · identidad visual del rediseño de Miseria */
+:root{color-scheme:light}
+html{scroll-behavior:smooth}
+body{background:#fff;color:#101010}
+.press-top{background:#fff}
+.press-top .press-back{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;white-space:nowrap}
+.press-top .press-back:hover{text-decoration:underline;text-underline-offset:5px}
+.press-top .language-switch{margin-left:auto}
+.press-top .header-actions{gap:12px}
+.press-wrap{width:min(1280px,calc(100% - 2 * clamp(22px,5vw,76px)));margin:0 auto}
+.press-hero{padding:clamp(55px,7vw,100px) 0 clamp(55px,6vw,85px);border-bottom:1px solid #d6d6d6}
+.press-intro{max-width:920px}
+.press-kicker{display:flex;gap:12px;align-items:center;font:600 11px/1.4 ui-monospace,Consolas,monospace;letter-spacing:.16em;text-transform:uppercase}
+.press-kicker:before{content:"";height:1px;width:30px;background:#111}
+.press-hero h1{font-size:clamp(54px,9vw,132px);line-height:1;letter-spacing:-.075em;margin:26px 0 20px;font-weight:720}
+.press-hero .lead{font-size:clamp(18px,1.7vw,25px);line-height:1.48;max-width:750px;margin:0}
+.press-main{padding:clamp(42px,6vw,85px) 0 clamp(72px,8vw,110px)}
+.press-unlock-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(230px,.65fr);gap:clamp(30px,6vw,100px);align-items:center}
+.press-gate{padding:clamp(28px,4vw,56px);background:#fff;border:1px solid #111;box-shadow:11px 14px 32px #0000000d;max-width:740px}
+.press-status{font:700 11px/1.5 ui-monospace,monospace;letter-spacing:.11em;text-transform:uppercase;color:#535353}
+.press-gate h2{font-size:clamp(31px,3.5vw,54px);line-height:1.1;letter-spacing:-.055em;margin:23px 0 13px}
+.press-gate p{font-size:16px;line-height:1.7;max-width:52ch}
+.press-form{margin-top:32px}
+.press-form label{display:block;font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;margin-bottom:11px}
+.press-form-row{display:flex;gap:11px;flex-wrap:wrap}
+.press-form input{width:min(250px,100%);flex:1 1 210px;min-height:54px;border:1px solid #1a1a1a;border-radius:2px;padding:12px 15px;background:#fff;font-size:19px;font-weight:700;letter-spacing:.21em;color:#111}
+.press-form input:focus-visible{outline:2px solid #111;outline-offset:3px}
+.press-form button{min-height:54px;flex:0 1 auto}
+.press-error{margin:12px 0 0;color:#9b0c0c;font-size:14px;line-height:1.4}
+.press-error:empty{display:none}
+.press-art{min-width:0;display:flex;justify-content:center;align-items:center}
+.press-art img{width:auto;max-height:500px;object-fit:contain;filter:drop-shadow(16px 26px 25px rgba(0,0,0,.22))}
+.press-unlocked{width:100%}
+.press-unlocked[hidden],.press-locked[hidden]{display:none!important}
+.press-document-top{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap;margin-bottom:30px}
+.press-document-top h2{font-size:clamp(33px,5vw,65px);line-height:1.05;letter-spacing:-.06em;margin:15px 0 8px}
+.press-document-top p{margin:0;font-size:16px}
+.press-meta{font:600 11px/1.5 ui-monospace,monospace;letter-spacing:.08em;color:#505050;text-transform:uppercase}
+.press-actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.press-actions .btn{min-height:50px}
+.press-frame-shell{border:1px solid #161616;background:#f2f2f2;box-shadow:10px 14px 32px #00000012;overflow:hidden}
+.press-frame-bar{display:flex;justify-content:space-between;align-items:center;gap:10px;background:#151515;color:#fff;padding:12px 19px;font:600 11px/1.4 ui-monospace,monospace;letter-spacing:.1em;text-transform:uppercase}
+.press-frame{display:block;width:100%;height:clamp(560px,77vh,980px);border:0;background:#fff}
+.press-fallback{font-size:13px;color:#555;line-height:1.5;margin-top:17px}
+.press-bottom{border-top:1px solid #ccc;padding:25px 0 48px;display:flex;align-items:flex-start;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:12px;color:#505050}
+.press-bottom a{text-decoration:underline;text-underline-offset:3px}
+.press-bottom nav{display:flex;gap:18px;flex-wrap:wrap}
+@media(max-width:800px){.press-unlock-grid{grid-template-columns:1fr}.press-art img{max-height:300px}.press-art{order:-1}.press-hero h1{font-size:clamp(52px,14vw,86px)}.press-frame{height:68vh;min-height:430px}}
+@media(max-width:600px){.press-top{height:72px;padding-inline:18px}.press-top .brand{font-size:20px}.press-top .press-back{font-size:11px}.press-top .press-back-long{display:none}.press-hero{padding-block:45px 48px}.press-hero .lead{font-size:17px}.press-main{padding-top:34px}.press-gate{padding:25px 22px}.press-form button{flex:1 1 100%}.press-form input{width:100%}.press-actions{width:100%}.press-actions a{flex:1 1 100%;justify-content:center}.press-frame{height:65vh;min-height:370px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important}}
+
+/* El header general oculta los botones a menos de 600px; conservar volver a la novela. */
+@media(max-width:600px){.press-top .header-actions .press-back{display:inline-flex!important;padding:10px 12px;min-height:38px;min-width:38px;align-items:center;justify-content:center}.press-top{gap:8px}.press-top .language-switch{margin-left:auto}.press-top .header-actions{flex:0 0 auto}.press-form button.btn.ink{background:#111;color:#fff}}
