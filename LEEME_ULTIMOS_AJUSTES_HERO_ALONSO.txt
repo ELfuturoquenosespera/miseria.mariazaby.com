@@ -1,0 +1,19 @@
+MISERIA – Corrección de portada 3D y vídeo en Alonso
+
+Archivos modificados:
+- index.html, index-fr.html, index-eng.html
+- css/miseria-hover-y-baile.css (interior de tapa sin efecto espejo)
+- css/miseria-multilingue.css (libro ampliado y previsualización de vídeo integrada)
+- js/miseria-lector-y-portada.js (un solo botón de lectura)
+- js/miseria-baile-y-voz.js (activar/desactivar la previsualización silenciosa al pasar el ratón)
+
+En escritorio:
+* Cabecera: hover abre la tapa y muestra la página MUERTE, clic abre el lector.
+* Alonso: hover mueve la tapa y revela el vídeo mediante fundido, sin sonido;
+  clic abre el vídeo completo acompañado por la narración de María Zabay.
+* Se conserva solo el botón negro «Leer las primeras páginas».
+
+En móvil: tocar la portada de Alonso abre el vídeo con la narración;
+tocar la portada superior abre el lector. No hay hover en pantalla táctil.
+
+Las imágenes, los audios, los vídeos y las páginas de prensa no se han alterado.
