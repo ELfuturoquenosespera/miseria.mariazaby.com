@@ -1,0 +1,22 @@
+MISERIA · NUEVA SALA DE PRENSA EN TRES IDIOMAS
+
+Archivos de acceso:
+ - sala-de-prensa.html: dosier español
+ - salle-de-presse.html: dosier francés
+ - press-room.html: dosier inglés
+
+Código: 2026
+
+La página principal de cada idioma enlaza con su sala de prensa mediante los botones de cabecera y pie. El acceso muestra en la propia página el visor PDF y los botones Abrir / Descargar.
+
+Los apartados públicos «Prensa escrita», «Radio y televisión» y «Blog y pódcast» siguen disponibles en su ubicación anterior en la landing y no aparecen dentro de la sala de prensa.
+
+Archivos de estilo y funcionamiento añadidos:
+ - css/miseria-sala-prensa.css
+ - js/sala-prensa-acceso.js
+
+Archivo existente modificado:
+ - js/miseria-redisenyo.js (elimina la antigua ventana de enlaces de prensa)
+ - index.html, index-fr.html, index-eng.html (botones de navegación)
+
+Nota técnica: Esta es una barrera de acceso visual en HTML y JavaScript, válida para un acceso sencillo con código compartido. En hosting estático los PDF siguen siendo accesibles por URL directa. Para proteger realmente los documentos hace falta configurar autenticación en el servidor o un sistema de ficheros privados.

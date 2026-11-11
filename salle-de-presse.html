@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#ffffff">
+<meta name="robots" content="noindex,nofollow">
+<title>Espace presse · Miseria | María Zabay</title>
+<meta name="description" content="Espace presse de Miseria, le roman de María Zabay. Accès au dossier officiel destiné aux journalistes.">
+<link rel="canonical" href="https://miseria.mariazabay.com/salle-de-presse.html">
+<link rel="alternate" hreflang="es" href="https://miseria.mariazabay.com/sala-de-prensa.html">
+<link rel="alternate" hreflang="fr" href="https://miseria.mariazabay.com/salle-de-presse.html">
+<link rel="alternate" hreflang="en" href="https://miseria.mariazabay.com/press-room.html">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/miseria-redisenyo.css">
+<link rel="stylesheet" href="css/miseria-multilingue.css">
+<link rel="stylesheet" href="css/miseria-sala-prensa.css">
+</head>
+<body data-press-pdf="assets/Miseria_dossier_francais.pdf" data-press-download="Miseria_dossier_francais.pdf" data-press-error="Code incorrect. Vérifiez les quatre chiffres et réessayez.">
+<header class="site-header press-top">
+ <a href="index-fr.html" class="brand" aria-label="Miseria · María Zabay">MISERIA<small>MARÍA ZABAY</small></a>
+ <nav aria-label="Idioma / Language / Langue" class="language-switch"><a href="sala-de-prensa.html" lang="es" hreflang="es" title="Español" aria-label="Español">🇪🇸</a>
+<a href="salle-de-presse.html" lang="fr" hreflang="fr" title="Français" aria-label="Français" aria-current="page">🇫🇷</a>
+<a href="press-room.html" lang="en" hreflang="en" title="English" aria-label="English">🇬🇧</a></nav>
+ <div class="header-actions"><a class="btn press-back" href="index-fr.html"><span class="press-back-long">← Retour au roman</span><span class="small-screen-only">←</span></a></div>
+</header>
+<main id="contenido">
+ <section class="press-hero">
+  <div class="press-wrap press-intro">
+   <p class="press-kicker">MISERIA · DOCUMENTS POUR LA PRESSE</p>
+   <h1>Espace presse</h1>
+   <p class="lead">Un espace destiné aux journalistes et aux professionnels des médias. Saisissez le code d’accès pour consulter et télécharger le dossier de presse officiel de <em>Miseria</em>.</p>
+  </div>
+ </section>
+ <section class="press-main press-wrap">
+  <div class="press-locked" id="press-locked">
+   <div class="press-unlock-grid">
+    <div class="press-gate">
+     <span class="press-status">Accès réservé à la presse</span>
+     <h2>Accès aux documents</h2>
+     <p>Saisissez le code communiqué pour accéder au dossier de presse.</p>
+     <form class="press-form" id="press-code-form" novalidate>
+      <label for="press-code">Code d’accès</label>
+      <div class="press-form-row">
+       <input id="press-code" name="code" type="password" inputmode="numeric" maxlength="4" autocomplete="off" placeholder="••••" required aria-describedby="press-code-error">
+       <button class="btn ink" type="submit">Accéder à l’espace presse</button>
+      </div>
+      <p class="press-error" id="press-code-error" role="alert" aria-live="polite"></p>
+     </form>
+    </div>
+    <div class="press-art"><img src="assets/miseria-hero.png" alt="Miseria · María Zabay" width="420" height="496"></div>
+   </div>
+  </div>
+  <div class="press-unlocked" id="press-unlocked" hidden>
+   <div class="press-document-top">
+    <div>
+     <span class="press-status">Accès autorisé</span>
+     <h2 id="press-doc-title" tabindex="-1">Dossier de presse · Français</h2>
+     <p class="press-meta">PDF officiel · 14 pages · Français</p>
+     <p>Consultez le dossier directement sur cette page ou téléchargez-le.</p>
+    </div>
+    <div class="press-actions">
+     <a id="press-open-pdf" class="btn" target="_blank" rel="noopener noreferrer">Ouvrir le PDF dans un nouvel onglet ↗</a>
+     <a id="press-download-pdf" class="btn ink">Télécharger le PDF ↓</a>
+    </div>
+   </div>
+   <div class="press-frame-shell">
+    <div class="press-frame-bar"><span>MISERIA · MARÍA ZABAY</span><span>PDF / 14</span></div>
+    <iframe id="press-pdf-frame" class="press-frame" title="Lecteur du dossier de presse de Miseria en français" loading="lazy"></iframe>
+   </div>
+   <p class="press-fallback">Si le PDF ne s’affiche pas, ouvrez-le dans un nouvel onglet ou téléchargez-le.</p>
+  </div>
+ </section>
+</main>
+<footer class="press-wrap press-bottom"><span>© 2026 María Zabay · Site promotionnel de Miseria.</span><nav aria-label="Legal"><a href="politica-de-privacidad.html">Confidentialité</a><a href="politica-de-cookies.html">Cookies</a><a href="aviso-legal.html">Mentions légales</a></nav></footer>
+<script defer src="js/sala-prensa-acceso.js"></script>
+</body>
+</html>
