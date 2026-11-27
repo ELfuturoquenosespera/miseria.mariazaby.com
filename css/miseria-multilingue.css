@@ -99,3 +99,26 @@
   #primera-pagina .feature-book-figure > img,
   #primera-pagina .feature-book-film{transition:none!important;}
 }
+
+/* Compra visible en la cabecera móvil de las tres versiones de la novela. */
+@media(max-width:640px){
+  .site-header--shop{padding-inline:14px;gap:7px;}
+  .site-header--shop .header-actions{flex:none;gap:5px;}
+  .site-header--shop .header-actions [data-shop]{
+    display:inline-flex;
+    min-height:42px;
+    padding:10px 11px;
+    font-size:11px;
+    white-space:nowrap;
+  }
+}
+@media(max-width:380px){
+  .site-header--shop{padding-inline:10px;gap:5px;}
+  .site-header--shop .language-switch a{width:25px;}
+  .site-header--shop .header-actions{gap:4px;}
+  .site-header--shop .header-actions [data-shop]{
+    padding:10px 8px;
+    font-size:10px;
+  }
+  .site-header--shop .mobile-menu-toggle{width:38px;}
+}
