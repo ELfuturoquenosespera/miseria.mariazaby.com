@@ -2831,3 +2831,32 @@ body.press-subpage,
 }
 
 .press-page-hero__book img{filter:drop-shadow(0 19px 22px #00000099) saturate(1) !important;}
+
+/* Color en las portadas y tarjetas de las tres secciones de prensa.
+   La especificidad mantiene esta excepción frente a monocromo.css. */
+body.press-subpage .press-page-hero__book img{
+  filter:drop-shadow(0 20px 26px rgba(0,0,0,.25)) !important;
+}
+body.press-subpage .press-page-entry img,
+body.press-subpage .press-page-entry video,
+body.press-subpage .press-page-entry iframe,
+body.press-subpage .press-page-entry picture,
+body.press-subpage .press-page-entry canvas,
+body.press-subpage .press-page-entry svg{
+  filter:none !important;
+}
+
+/* El enlace original cubre toda la tarjeta y conserva la navegación nativa. */
+.press-subpage .press-page-entry{position:relative;}
+.press-subpage .press-page-entry__link::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:1;
+  cursor:pointer;
+}
+.press-subpage .press-page-entry__link:focus-visible{outline:none;}
+.press-subpage .press-page-entry__link:focus-visible::after{
+  outline:2px solid #111;
+  outline-offset:4px;
+}
